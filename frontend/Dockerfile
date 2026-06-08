@@ -1,25 +1,32 @@
-FROM node:20-alpine AS build
-
+FROM node:20-alpine AS deps
 WORKDIR /app
-
 COPY package.json package-lock.json ./
 RUN npm ci
 
+FROM node:20-alpine AS build
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ARG VITE_API_URL=
-ENV VITE_API_URL=$VITE_API_URL
+ARG NEXT_PUBLIC_ORDER_WEBHOOK_URL=
+ENV NEXT_PUBLIC_ORDER_WEBHOOK_URL=$NEXT_PUBLIC_ORDER_WEBHOOK_URL
 
 RUN npm run build
 
-FROM nginx:alpine
+FROM node:20-alpine AS runner
+WORKDIR /app
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
-COPY --from=build /app/dist /usr/share/nginx/html
+ENV NODE_ENV=production
+ENV PORT=3000
 
-ENV PORT=80
-EXPOSE 80
+RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+COPY --from=build /app/public ./public
+COPY --from=build --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+EXPOSE 3000
+
+CMD ["node", "server.js"]

@@ -1,12 +1,13 @@
 # Layali Beauty — Frontend
 
-React + Vite frontend for Layali Beauty.
+Premium dynamic DTC storefront (COD only) built with Next.js, React, and Tailwind.
 
-## Environment
+## Config
 
-```bash
-VITE_API_URL=https://your-backend-url
-```
+Edit these files only — the whole site adapts automatically:
+
+- `src/config/businessInputs.ts` — brand, UAE market, theme colors
+- `src/config/products.ts` — unlimited products
 
 ## Run locally
 
@@ -15,9 +16,28 @@ npm install
 npm run dev
 ```
 
-## Docker (EasyPanel)
+## Build
 
 ```bash
-docker build -t layalibeauty-frontend --build-arg VITE_API_URL=https://api.example.com .
-docker run -p 8080:80 layalibeauty-frontend
+npm run build
+npm start
 ```
+
+## Docker (EasyPanel)
+
+| Setting | Value |
+|---------|-------|
+| Branch | `main` |
+| Build Path | `/frontend` |
+| Proxy port | `3000` |
+
+```bash
+docker build -t layalibeauty-frontend .
+docker run -p 3000:3000 layalibeauty-frontend
+```
+
+## COD flow
+
+Cart → Checkout popup → Upsell (12s) → Thank you → webhook
+
+Set `NEXT_PUBLIC_ORDER_WEBHOOK_URL` to send orders to your sheet/webhook.
