@@ -1,4 +1,4 @@
-import { businessInputs } from '@/config/businessInputs';
+import { businessConfig } from '@/config/business';
 import type { Product } from '@/types/product';
 import type { SiteMarketing } from '@/types/marketing';
 
@@ -37,12 +37,14 @@ function getFormatLabel(format: string): string {
     gummies: 'علكات',
     serum: 'سيروم',
     cream: 'كريم',
+    'diffuser-spray': 'بخاخ',
+    'personal-fragrance': 'عطر',
   };
   return map[format] ?? format;
 }
 
 export function generateMarketing(productList: Product[]): SiteMarketing {
-  const { brand, market } = businessInputs;
+  const { brand, market } = businessConfig;
   const count = productList.length;
   const formatLabel = getFormatLabel(productList[0]?.format ?? 'gummies');
   const categories = unique(productList.map((p) => formatCategoryLabel(p.category)));
@@ -220,7 +222,7 @@ export function generateMarketing(productList: Product[]): SiteMarketing {
 
 export function generateProductMarketing(product: Product) {
   const site = generateMarketing([product]);
-  const { market } = businessInputs;
+  const { market } = businessConfig;
   const formatLabel = getFormatLabel(product.format);
 
   return {

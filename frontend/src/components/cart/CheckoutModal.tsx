@@ -4,7 +4,7 @@ import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/lib/cart-context';
 import { Icon } from '@/components/ui/Icon';
-import { businessInputs } from '@/config/businessInputs';
+import { businessConfig } from '@/config/business';
 
 const emirates = ['دبي', 'أبوظبي', 'الشارقة', 'عجمان', 'أم القيوين', 'رأس الخيمة', 'الفجيرة'];
 
@@ -12,7 +12,7 @@ export function CheckoutModal() {
   const router = useRouter();
   const { checkoutOpen, closeCheckout, submitOrder, total, items } = useCart();
   const [loading, setLoading] = useState(false);
-  const { market } = businessInputs;
+  const { market } = businessConfig;
 
   if (!checkoutOpen) return null;
 

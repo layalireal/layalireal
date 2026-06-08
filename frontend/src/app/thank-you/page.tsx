@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useCart } from '@/lib/cart-context';
-import { businessInputs } from '@/config/businessInputs';
+import { businessConfig } from '@/config/business';
 
 export default function ThankYouPage() {
   const { lastOrderId } = useCart();
@@ -13,7 +13,7 @@ export default function ThankYouPage() {
         <p className="text-sm uppercase tracking-[0.2em] text-brand-accent">THANK YOU</p>
         <h1 className="mt-4 text-3xl font-bold text-brand-text">تم استلام طلبك بنجاح</h1>
         <p className="mt-4 text-base leading-8 text-brand-muted">
-          فريق {businessInputs.brand.nameLocal} بيتصل فيك قريباً لتأكيد العنوان. الدفع عند الاستلام فقط.
+          فريق {businessConfig.brand.nameLocal} بيتصل فيك قريباً لتأكيد العنوان. الدفع عند الاستلام فقط.
         </p>
         {lastOrderId && (
           <p className="mt-4 rounded-2xl bg-brand-background px-4 py-3 text-sm text-brand-text">

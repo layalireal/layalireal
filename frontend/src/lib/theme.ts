@@ -1,7 +1,7 @@
-import { businessInputs } from '@/config/businessInputs';
+import { businessConfig } from '@/config/business';
 
 export function getThemeCssVariables(): Record<string, string> {
-  const { design } = businessInputs;
+  const { design } = businessConfig;
   return {
     '--color-primary': design.primaryColor,
     '--color-primary-dark': design.primaryDarkColor,
@@ -15,6 +15,10 @@ export function getThemeCssVariables(): Record<string, string> {
 }
 
 export function formatPrice(amount: number): string {
-  const { currencySymbol } = businessInputs.market;
-  return `يبدأ من ${amount} ${currencySymbol}`;
+  const { currencySymbol } = businessConfig.market;
+  return `${amount} ${currencySymbol}`;
+}
+
+export function formatPriceFrom(amount: number): string {
+  return `يبدأ من ${formatPrice(amount)}`;
 }

@@ -1,7 +1,7 @@
-import { businessInputs } from '@/config/businessInputs';
+import { businessConfig } from '@/config/business';
 
 export function BrandLogo({ compact = false }: { compact?: boolean }) {
-  const { brand } = businessInputs;
+  const { brand } = businessConfig;
 
   return (
     <div className="flex items-center gap-3">

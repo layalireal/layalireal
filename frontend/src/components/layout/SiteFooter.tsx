@@ -1,6 +1,6 @@
 import { BrandLogo } from '@/components/ui/BrandLogo';
 import type { SiteMarketing } from '@/types/marketing';
-import { businessInputs } from '@/config/businessInputs';
+import { businessConfig } from '@/config/business';
 
 export function SiteFooter({ marketing }: { marketing: SiteMarketing }) {
   const year = new Date().getFullYear();
@@ -36,7 +36,7 @@ export function SiteFooter({ marketing }: { marketing: SiteMarketing }) {
           </div>
         </div>
         <p className="mt-10 text-center text-xs text-brand-muted">
-          © {year} {businessInputs.brand.nameLocal}. جميع الحقوق محفوظة.
+          © {year} {businessConfig.brand.nameLocal}. جميع الحقوق محفوظة.
         </p>
       </div>
     </footer>

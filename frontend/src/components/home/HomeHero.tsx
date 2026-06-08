@@ -3,10 +3,10 @@ import { PremiumImagePlaceholder } from '@/components/ui/PremiumImagePlaceholder
 import { Icon } from '@/components/ui/Icon';
 import { TrustBadges } from '@/components/home/TrustBadges';
 import type { SiteMarketing } from '@/types/marketing';
-import { businessInputs } from '@/config/businessInputs';
+import { businessConfig } from '@/config/business';
 
 export function HomeHero({ marketing }: { marketing: SiteMarketing }) {
-  const { brand } = businessInputs;
+  const { brand } = businessConfig;
 
   return (
     <section className="px-4 py-8 sm:px-6 sm:py-12">

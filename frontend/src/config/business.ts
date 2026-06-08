@@ -1,9 +1,9 @@
-export const businessInputs = {
+export const businessConfig = {
   brand: {
     nameLocal: 'ليالي للجمال',
     nameEnglish: 'LAYALI BEAUTY',
-    tagline: 'جمالك يبدأ من الداخل',
-    description: 'صيدلية تجميل إماراتية. تركيبات سريرية، حلال، ومدعومة بأبحاث منشورة.',
+    tagline: 'راحة البيت تبدأ من الريحة',
+    description: 'عطور وبخاخات منزلية فاخرة من دبي. تركيبات مدروسة لبيت أهدأ وأنعم.',
     logoUrl: '',
     iconUrl: '',
   },
@@ -17,6 +17,13 @@ export const businessInputs = {
     phoneCountryCode: '+971',
     phoneExample: '50 123 4567',
   },
+  cod: {
+    enabled: true,
+    paymentLabel: 'الدفع عند الاستلام — بدون دفع أونلاين',
+    deliveryPromise: 'توصيل ١-٣ أيام لكل إمارات الدولة',
+    confirmationPromise: 'فريقنا يتصل فيك لتأكيد الطلب قبل الشحن',
+    returnGuarantee: 'ضمان استرجاع ٣٠ يوم — جرّبي براحتك',
+  },
   design: {
     primaryColor: '#1B4332',
     primaryDarkColor: '#0F2922',
@@ -28,10 +35,8 @@ export const businessInputs = {
     borderColor: '#E6DDD0',
   },
   checkout: {
-    webhookUrl: process.env.NEXT_PUBLIC_ORDER_WEBHOOK_URL ?? '',
     upsellSeconds: 12,
-    codOnly: true,
   },
 } as const;
 
-export type BusinessInputs = typeof businessInputs;
+export type BusinessConfig = typeof businessConfig;

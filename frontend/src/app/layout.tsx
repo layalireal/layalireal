@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { businessInputs } from '@/config/businessInputs';
+import { businessConfig } from '@/config/business';
 import { getThemeCssVariables } from '@/lib/theme';
 import { CartProvider } from '@/lib/cart-context';
 import { SiteHeader } from '@/components/layout/SiteHeader';
@@ -15,12 +15,12 @@ const marketing = generateMarketing(products);
 const themeVars = getThemeCssVariables();
 
 export const metadata: Metadata = {
-  title: `${businessInputs.brand.nameLocal} | ${businessInputs.brand.nameEnglish}`,
-  description: businessInputs.brand.description,
+  title: `${businessConfig.brand.nameLocal} | ${businessConfig.brand.nameEnglish}`,
+  description: businessConfig.brand.description,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const { market } = businessInputs;
+  const { market } = businessConfig;
 
   return (
     <html lang={market.language} dir={market.direction}>

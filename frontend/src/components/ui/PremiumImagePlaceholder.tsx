@@ -1,4 +1,4 @@
-import { businessInputs } from '@/config/businessInputs';
+import { businessConfig } from '@/config/business';
 
 interface PremiumImagePlaceholderProps {
   label: string;
@@ -41,7 +41,7 @@ export function PremiumImagePlaceholder({
       <div className="relative flex h-full flex-col items-center justify-center gap-3 p-6 text-center">
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-primary text-brand-accent">
           <span className="text-xl font-semibold">
-            {businessInputs.brand.nameEnglish.charAt(0)}
+            {businessConfig.brand.nameEnglish.charAt(0)}
           </span>
         </div>
         <p className="max-w-[16rem] text-sm text-brand-muted">{label}</p>
