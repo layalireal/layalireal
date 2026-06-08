@@ -7,21 +7,23 @@ This monorepo keeps Dockerfiles inside `backend/` and `frontend/`.
 
 ## Fix (choose ONE option)
 
-### Option A — Use deploy branches (recommended, easiest)
+### Option A — `main` branch + Build Path (most reliable)
 
-| Service  | Git repo | Branch    | Proxy port |
-|----------|----------|-----------|------------|
-| backend  | `layalireal/layalireal` | `backend` | `3000` |
-| frontend | `layalireal/layalireal` | `frontend` | same as `PORT` env (default `80`) |
+| Service  | Branch | Build Path | Proxy port |
+|----------|--------|------------|------------|
+| backend  | `main` | `/backend` | `3000` |
+| frontend | `main` | `/frontend` | `80` |
 
-Build method: **Dockerfile** (path = `Dockerfile`, default)
+Build method: **Dockerfile**
 
-### Option B — Use `main` branch with paths
+### Option B — Deploy branches
 
-| Service  | Branch | Root path  | Dockerfile path   | Proxy port |
-|----------|--------|------------|-------------------|------------|
-| backend  | `main` | `backend`  | `Dockerfile`      | `3000` |
-| frontend | `main` | `frontend` | `Dockerfile`      | `80` or `PORT` |
+| Service  | Branch    | Build Path | Proxy port |
+|----------|-----------|------------|------------|
+| backend  | `backend` | `/`        | `3000` |
+| frontend | `frontend`| `/`        | `80` |
+
+If you see **"Commits not found"**, use Option A or reconnect GitHub in EasyPanel Settings.
 
 ## Environment variables
 
