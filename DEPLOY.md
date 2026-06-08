@@ -21,7 +21,7 @@ Build method: **Dockerfile**
 | Service  | Branch    | Build Path | Proxy port |
 |----------|-----------|------------|------------|
 | backend  | `backend` | `/`        | `3000` |
-| frontend | `frontend`| `/`        | `80` |
+| frontend | `frontend`| `/`        | `3000` |
 
 If you see **"Commits not found"**, use Option A or reconnect GitHub in EasyPanel Settings.
 
@@ -35,11 +35,20 @@ PORT=3000
 
 ### Frontend
 ```env
-PORT=80
-VITE_API_URL=https://YOUR-BACKEND-DOMAIN
+PORT=3000
+NEXT_PUBLIC_ORDER_WEBHOOK_URL=
 ```
 
-`VITE_API_URL` must be set as a **build argument** or env var before build.
+## Cloudflare Error 522 / 525
+
+If you see **Error 522** or **525** on `layalibeauty.store`:
+
+1. **Cloudflare DNS** → A record `@` and `www` → `187.124.12.89` (your VPS IP)
+2. **Cloudflare SSL** → mode **Full** (EasyPanel has HTTPS on origin)
+3. **Remove Namecheap URL Forward** on the domain (conflicts with Cloudflare)
+4. **EasyPanel → frontend → Domains** → add `layalibeauty.store` + `www.layalibeauty.store`, proxy port **3000**
+5. **EasyPanel → frontend** must be **Running** (green) — redeploy if needed
+6. **Build Path** = `/frontend`, branch = `main`
 
 ## After changing settings
 
