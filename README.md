@@ -15,12 +15,16 @@ DATABASE_URL=postgres://layalibeauty:layalibeauty@layalibeauty_database:5432/lay
 
 ## EasyPanel deploy
 
-Both services need a **Dockerfile at the build root**. Use this repo with a **source path** per service:
+See **[DEPLOY.md](./DEPLOY.md)** for full instructions.
 
-| Service  | Git repo | Source path | Port |
-|----------|----------|-------------|------|
-| backend  | `layalireal/layalireal` | `backend` | 3000 |
-| frontend | `layalireal/layalireal` | `frontend` | 80 |
+### Quick setup (recommended)
+
+| Service  | Repo | Branch    | Proxy port |
+|----------|------|-----------|------------|
+| backend  | `layalireal/layalireal` | `backend` | `3000` |
+| frontend | `layalireal/layalireal` | `frontend` | `80` |
+
+Build method: **Dockerfile** (default path)
 
 ### Backend env vars
 
@@ -29,10 +33,9 @@ DATABASE_URL=postgres://layalibeauty:layalibeauty@layalibeauty_database:5432/lay
 PORT=3000
 ```
 
-### Frontend build arg
+### Frontend env vars
 
 ```bash
+PORT=80
 VITE_API_URL=https://your-backend-domain
 ```
-
-> **Note:** `layalireal/backend` and `layalireal/frontend` repos are separate. If EasyPanel points to those repos, push code there and set each repo as the git source with root path `/`.
