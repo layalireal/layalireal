@@ -15,7 +15,9 @@ DATABASE_URL=postgres://layalibeauty:layalibeauty@layalibeauty_database:5432/lay
 
 ## EasyPanel deploy
 
-See **[DEPLOY.md](./DEPLOY.md)** for full instructions and troubleshooting.
+See **[EASYPANEL-AR.md](./EASYPANEL-AR.md)** (عربي) or **[DEPLOY.md](./DEPLOY.md)** (full guide).
+
+**Build fails on VPS?** Use pre-built image: `ghcr.io/layalireal/layalireal-frontend:latest` (see DEPLOY.md Plan B).
 
 ### Quick setup (recommended)
 

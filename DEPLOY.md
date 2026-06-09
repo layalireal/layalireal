@@ -1,5 +1,21 @@
 # EasyPanel — Layali Beauty Deploy Guide
 
+**دليل عربي سريع:** [EASYPANEL-AR.md](./EASYPANEL-AR.md)
+
+## Plan B: pre-built Docker image (VPS build keeps failing)
+
+If build fails with `Killed`, `spawn error`, or never finishes — **do not build on VPS**.
+
+1. Push to `main` → GitHub Actions builds image automatically (workflow: `Build frontend Docker image`)
+2. EasyPanel → frontend → **Source: Docker Image**
+3. Image: `ghcr.io/layalireal/layalireal-frontend:latest`
+4. Proxy port **3000**, env `PORT=3000` + `HOSTNAME=0.0.0.0`
+5. Deploy
+
+Make package public: GitHub → Packages → `layalireal-frontend` → Package settings → Public.
+
+---
+
 ## Problem: ma t9drch tdir Deploy / bouton ma khdemch
 
 Try these in order (frontend service):

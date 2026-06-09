@@ -15,7 +15,7 @@ COPY frontend/ .
 ARG NEXT_PUBLIC_ORDER_WEBHOOK_URL=
 ENV NEXT_PUBLIC_ORDER_WEBHOOK_URL=$NEXT_PUBLIC_ORDER_WEBHOOK_URL
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV NODE_OPTIONS=--max-old-space-size=4096
+ENV NODE_OPTIONS=--max-old-space-size=2048
 
 RUN npm run build
 RUN test -f .next/standalone/server.js
@@ -36,8 +36,5 @@ COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 EXPOSE 3000
-
-HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD node -e "fetch('http://127.0.0.1:3000').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
 
 CMD ["node", "server.js"]
