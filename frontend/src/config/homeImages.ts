@@ -1,7 +1,6 @@
+import { publicAsset } from '@/lib/publicAsset';
+
 /** Home-page-only assets (not used on product landing pages). */
-function publicAsset(filename: string): string {
-  return `/${filename.split('/').map(encodeURIComponent).join('/')}`;
-}
 
 export const homeImages = {
   hero: publicAsset('ChatGPT Image Jun 9, 2026, 11_46_50 PM.png'),
