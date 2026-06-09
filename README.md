@@ -22,6 +22,8 @@ See **[DEPLOY.md](./DEPLOY.md)** for full instructions and troubleshooting.
 | Service  | Repo | Branch | Build Path | Proxy port |
 |----------|------|--------|------------|------------|
 | frontend | `layalireal/layalireal` | `main` | `/frontend` | `3000` |
+
+If Build Path is missing: branch `main`, path `/` (root `Dockerfile`), or branch `frontend`, path `/`.
 | backend  | `layalireal/layalireal` | `main` | `/backend` | `3000` |
 
 Build method: **Dockerfile**

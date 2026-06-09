@@ -1,5 +1,55 @@
 # EasyPanel — Layali Beauty Deploy Guide
 
+## Problem: ma t9drch tdir Deploy / bouton ma khdemch
+
+Try these in order (frontend service):
+
+### 1. Reconnect GitHub
+
+EasyPanel → **frontend** → **Source** → disconnect repo → connect again `layalireal/layalireal` → Branch **`main`**.
+
+### 2. Stuck on "Building" or Deploy greyed out
+
+1. **Stop** the service (if running)
+2. Wait 30 seconds
+3. **Settings** → confirm Branch `main`, Build Path `/frontend`, port **3000**
+4. Click **Deploy** again
+
+### 3. Build Path empty or `/` only
+
+If your EasyPanel version has no Build Path field, use either:
+
+| Option | Branch | Build Path | Notes |
+|--------|--------|------------|-------|
+| A | `frontend` | `/` | Orphan branch (see below) |
+| B | `main` | `/` | Uses root `Dockerfile` (frontend only) |
+
+Proxy port must still be **3000**.
+
+### 4. Force a fresh build after push
+
+```bash
+# On your machine or after agent push — triggers new commit on main
+git pull origin main
+```
+
+Then EasyPanel → **Deploy** (or enable **Auto Deploy** on push).
+
+### 5. Build fails in logs
+
+| Log message | Fix |
+|-------------|-----|
+| `Dockerfile: no such file` | Build Path = `/frontend` OR branch `frontend` with path `/` |
+| `npm ci` / lockfile error | Use branch `main` (latest), redeploy |
+| `EADDRINUSE` / health fail | Env `PORT=3000`, proxy port **3000** |
+| `Commits not found` | Branch `main` + Build Path `/frontend` (not `frontend` branch) |
+
+### 6. Site works but old design / 2 products only
+
+Old container still running. **Stop** → **Deploy** → wait for `Ready`. Test: `/products/aroma-rose-ritual-kit` must load (not 404).
+
+---
+
 ## Recommended setup (use this)
 
 | Service  | Branch | Build Path | Proxy port | Build method |
@@ -58,6 +108,8 @@ Only if Build Path does not work in your EasyPanel version:
 |----------|-----------|------------|------------|
 | backend  | `backend` | `/`        | 3000 |
 | frontend | `frontend`| `/`        | 3000 |
+
+Or on branch **`main`** with Build Path **`/`** — root `Dockerfile` builds the storefront only.
 
 Regenerate branches after code changes:
 
