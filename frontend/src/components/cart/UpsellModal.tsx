@@ -54,7 +54,7 @@ export function UpsellModal() {
             }}
             className="rounded-2xl bg-brand-primary py-3 text-sm font-bold text-white"
           >
-            أضيفي COD
+            أضيفي للطلب
           </button>
         </div>
       </div>

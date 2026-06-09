@@ -10,7 +10,7 @@ export default function ThankYouPage() {
   return (
     <section className="flex min-h-[70vh] items-center justify-center px-4 py-16 sm:px-6">
       <div className="w-full max-w-xl rounded-3xl border border-brand-border bg-brand-card p-8 text-center shadow-luxury">
-        <p className="text-sm uppercase tracking-[0.2em] text-brand-accent">THANK YOU</p>
+        <p className="text-sm tracking-[0.15em] text-brand-accent">شكراً لك</p>
         <h1 className="mt-4 text-3xl font-bold text-brand-text">تم استلام طلبك بنجاح</h1>
         <p className="mt-4 text-base leading-8 text-brand-muted">
           فريق {businessConfig.brand.nameLocal} بيتصل فيك قريباً لتأكيد العنوان. الدفع عند الاستلام فقط.

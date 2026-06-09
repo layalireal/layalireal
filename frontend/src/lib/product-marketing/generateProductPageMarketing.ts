@@ -54,7 +54,7 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
             id: 'alt-2',
             name: 'زيوت ورد رخيصة',
             priceRange: '٣٠ – ٨٠ د.إ',
-            reasons: ['fragrance oil مو essential', 'ما فيها سيروم', 'بدون مصباح أروما', 'جودة غير مضمونة'],
+            reasons: ['زيت عطري مو زيت أساسي', 'ما فيها سيروم', 'بدون مصباح أروما', 'جودة غير مضمونة'],
           },
           {
             id: 'alt-3',
@@ -124,7 +124,7 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
   ];
 
   const cities = product.delivery?.cities ?? ['دبي', 'أبوظبي', 'الشارقة'];
-  const carriers = product.delivery?.carriers ?? ['Aramex', 'SMSA'];
+  const carriers = product.delivery?.carriers ?? ['أرامكس', 'سمسا'];
 
   const uaeNames = ['فاطمة الكعبي', 'مريم الشامسي', 'نورة المنصوري'];
   const uaeCities = ['دبي', 'أبوظبي', 'الشارقة'];
@@ -140,7 +140,7 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
     trustStrip: [
       { id: 'cod', label: 'الدفع عند الاستلام', sublabel: 'بدون دفع أونلاين', icon: 'heartHandshake' },
       { id: 'ship', label: cod.deliveryPromise, sublabel: market.countryName, icon: 'truck' },
-      { id: 'guarantee', label: 'ضمان 30 يوم', sublabel: 'استرجاع كامل', icon: 'shield' },
+      { id: 'guarantee', label: 'ضمان ٣٠ يوم', sublabel: 'استرجاع كامل', icon: 'shield' },
       { id: 'quality', label: product.badges[1] ?? 'جودة معتمدة', sublabel: brand.nameLocal, icon: 'flask' },
     ],
     problemInsight: {
@@ -171,14 +171,14 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
       [
         { value: String(product.rating), label: 'تقييم' },
         { value: String(product.reviewsCount), label: 'تقييم موثّق' },
-        { value: '30', label: 'يوم ضمان' },
-        { value: '1-3', label: 'أيام توصيل' },
+        { value: '٣٠', label: 'يوم ضمان' },
+        { value: '١-٣', label: 'أيام توصيل' },
       ],
     testimonials: uaeNames.map((name, i) => ({
       id: `t-${i}`,
       quote: `بعد ما عانيت من ${product.problem}، ${product.shortName} ساعدني أحس بـ${product.desiredOutcome}. الحين ما أستغني عنه.`,
       name,
-      meta: `${[34, 29, 41][i]} سنة • ${uaeCities[i]} • مشترية مؤكدة`,
+      meta: `${['٣٤', '٢٩', '٤١'][i]} سنة • ${uaeCities[i]} • مشترية مؤكدة`,
       initial: name.charAt(0),
       rating: product.rating,
     })),
@@ -188,7 +188,7 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
       rows: [
         { id: 'c1', label: 'السعر', product: `يبدأ من ${product.offers[0].price} د.إ`, alternative: 'أغلى بمرتين أو أرخص بس ما ينفع' },
         { id: 'c2', label: 'الثبات', product: product.mechanism.slice(0, 60), alternative: 'يختفي بسرعة' },
-        { id: 'c3', label: 'الدفع', product: 'COD — عند الاستلام', alternative: 'دفع أونلاين إجباري' },
+        { id: 'c3', label: 'الدفع', product: 'الدفع عند الاستلام', alternative: 'دفع أونلاين إجباري' },
         { id: 'c4', label: 'الضمان', product: cod.returnGuarantee, alternative: 'بدون ضمان' },
         { id: 'c5', label: 'المكونات', product: product.mainIngredient, alternative: 'مو واضحة' },
       ],
@@ -237,7 +237,7 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
         {
           id: 'faq-cod',
           question: `هل الدفع عند الاستلام متاح في ${market.countryName}؟`,
-          answer: `إيه، COD متاح لمعظم المناطق. ${cod.confirmationPromise}`,
+          answer: `إيه، الدفع عند الاستلام متاح لمعظم المناطق. ${cod.confirmationPromise}`,
         },
         {
           id: 'faq-delivery',
@@ -251,7 +251,7 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
         },
       ],
     },
-    testimonialsSection: { eyebrow: 'VERIFIED REVIEWS', headline: 'عميلات جرّبن وشاركن تجربتهن' },
+    testimonialsSection: { eyebrow: 'تقييمات موثّقة', headline: 'عميلات جرّبن وشاركن تجربتهن' },
     timelineSection: { eyebrow: 'النتائج المتوقعة', headline: 'وش ممكن تلاحظين مع الوقت؟' },
     howToUse: {
       headline: product.usage?.headline ?? `طريقة استخدام ${formatLabel}`,

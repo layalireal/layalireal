@@ -76,11 +76,11 @@ export function generateMarketing(productList: Product[]): SiteMarketing {
       headlineAccent: 'لجمال يبدأ من البيت',
       subheadline: `${brand.description} تركيبات مبنية على ${ingredients} بجرعات مدروسة لنتائج تدريجية وواضحة.`,
       cta: `استكشفي ${formatLabel} الآن`,
-      proofLabel: 'ضمان استرجاع 30 يوم',
-      proofTitle: 'مرخّصة · حلال · COD',
+      proofLabel: 'ضمان استرجاع ٣٠ يوم',
+      proofTitle: 'مرخّصة · حلال · الدفع عند الاستلام',
     },
     formulations: {
-      eyebrow: 'OUR FORMULATIONS',
+      eyebrow: 'تركيباتنا',
       headline:
         count > 1
           ? `${toArabicNumber(count)} ${formatLabel}. ${toArabicNumber(categories.length)} مجالات. حل سريري واحد.`
@@ -91,7 +91,7 @@ export function generateMarketing(productList: Product[]): SiteMarketing {
           : productList[0]?.cardSubheadline ?? '',
     },
     whyBrand: {
-      eyebrow: `WHY ${brand.nameEnglish}`,
+      eyebrow: `ليش ${brand.nameEnglish}`,
       headline: 'صيدلية، مو متجر تجميل عادي',
       subheadline: `نركّز على الترخيص، الحلال، التركيبة السريرية، وراحة العميلة في ${market.countryName}.`,
       cards: [
@@ -122,26 +122,26 @@ export function generateMarketing(productList: Product[]): SiteMarketing {
       ],
     },
     trustBadges: [
-      { id: 'cod', label: 'COD', sublabel: 'الدفع عند الاستلام', icon: 'heartHandshake' },
-      { id: 'halal', label: 'حلال', sublabel: 'نباتي 100%', icon: 'leaf' },
-      { id: 'gmp', label: 'GMP', sublabel: 'تصنيع طبي', icon: 'flask' },
-      { id: 'guarantee', label: '30 يوم', sublabel: 'ضمان استرجاع', icon: 'shield' },
+      { id: 'cod', label: 'الدفع عند الاستلام', sublabel: 'بدون دفع أونلاين', icon: 'heartHandshake' },
+      { id: 'halal', label: 'حلال', sublabel: 'نباتي ١٠٠٪', icon: 'leaf' },
+      { id: 'gmp', label: 'تصنيع معتمد', sublabel: 'معايير طبية', icon: 'flask' },
+      { id: 'guarantee', label: '٣٠ يوم', sublabel: 'ضمان استرجاع', icon: 'shield' },
     ],
     testimonials: {
-      eyebrow: 'VERIFIED REVIEWS',
+      eyebrow: 'تقييمات موثّقة',
       headline: 'عميلات قرأن المكونات قبل ما يطلّبوا',
       subheadline: `${brand.nameLocal} اختيار اللي ما يصدّقون أي إعلان. يقرؤون، يتأكدون، وبعدين يطلبون.`,
       items: productList.slice(0, 3).map((product, index) => ({
         id: `review-${product.id}`,
         quote: `بعد ما قرأت عن ${product.mainIngredient} وكيف يعالج ${product.problem}، طلبت ${product.shortName}. خلال أسابيع لاحظت فرق واضح.`,
         name: ['سارة العتيبي', 'نورة الدوسري', 'فاطمة الخالدي'][index] ?? 'عميلة موثقة',
-        meta: `${[32, 38, 35][index] ?? 30} سنة • ${['دبي', 'أبوظبي', 'الشارقة'][index] ?? market.countryName} • مشترية مؤكدة`,
+        meta: `${toArabicNumber([32, 38, 35][index] ?? 30)} سنة • ${['دبي', 'أبوظبي', 'الشارقة'][index] ?? market.countryName} • مشترية مؤكدة`,
         initial: ['س', 'ن', 'ف'][index] ?? 'ع',
         rating: product.rating,
       })),
     },
     howItWorks: {
-      eyebrow: 'HOW IT WORKS',
+      eyebrow: 'كيف يشتغل',
       headline: 'من الطلب لباب بيتك في ٣ خطوات',
       subheadline: 'بدون دفع أونلاين. بدون التزام. بدون مخاطرة.',
       steps: [
@@ -169,14 +169,14 @@ export function generateMarketing(productList: Product[]): SiteMarketing {
       ],
     },
     finalCta: {
-      eyebrow: 'BEGIN YOUR RITUAL',
+      eyebrow: 'ابدئي طقوسك',
       headline: 'جمالك يستحق علم، مو وعود',
       subheadline: `ابدئي روتينك السريري اليوم. دفع عند الاستلام، شحن داخل ${market.countryName}، وضمان استرجاع ٣٠ يوم.`,
       cta: `استكشفي ${formatLabel} الآن`,
-      chips: ['الدفع عند الاستلام', 'حلال 100%', `شحن ${market.countryName}`, 'ضمان 30 يوم'],
+      chips: ['الدفع عند الاستلام', 'حلال ١٠٠٪', `شحن ${market.countryName}`, 'ضمان ٣٠ يوم'],
     },
     faq: {
-      eyebrow: 'FAQ',
+      eyebrow: 'الأسئلة الشائعة',
       headline: 'أسئلة قبل الطلب',
       subheadline: 'كل شي تحتاجين تعرفينه قبل الدفع عند الاستلام.',
       items: [
@@ -219,7 +219,7 @@ export function generateMarketing(productList: Product[]): SiteMarketing {
     ],
     footer: {
       description: `${brand.nameLocal} — ${brand.description}`,
-      chips: ['حلال ١٠٠٪', 'GMP', 'COD'],
+      chips: ['حلال ١٠٠٪', 'تصنيع معتمد', 'الدفع عند الاستلام'],
       links: [
         { label: formatLabel, href: '#products' },
         { label: 'قانوني', href: '#footer' },

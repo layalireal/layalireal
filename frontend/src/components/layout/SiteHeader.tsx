@@ -32,7 +32,7 @@ export function SiteHeader() {
               type="button"
               onClick={openCart}
               className="relative rounded-full p-2 transition-colors hover:bg-brand-primary-soft"
-              aria-label="Cart"
+              aria-label="السلة"
             >
               <Icon name="bag" className="h-6 w-6 text-brand-text" />
               {itemCount > 0 && (
@@ -44,7 +44,7 @@ export function SiteHeader() {
             <button
               type="button"
               className="rounded-full p-2 transition-colors hover:bg-brand-primary-soft md:hidden"
-              aria-label="Menu"
+              aria-label="القائمة"
             >
               <Icon name="menu" className="h-6 w-6 text-brand-text" />
             </button>

@@ -11,7 +11,7 @@ export function CartDrawer() {
 
   return (
     <div className="fixed inset-0 z-50 flex">
-      <button type="button" className="flex-1 bg-black/40" onClick={closeCart} aria-label="Close cart" />
+      <button type="button" className="flex-1 bg-black/40" onClick={closeCart} aria-label="إغلاق السلة" />
       <aside className="flex w-full max-w-md flex-col border-r border-brand-border bg-white shadow-luxury">
         <div className="flex items-center justify-between border-b border-brand-border p-5">
           <h2 className="text-xl font-extrabold">السلة</h2>
@@ -46,7 +46,7 @@ export function CartDrawer() {
               <span>{formatPrice(total)}</span>
             </div>
             <button type="button" onClick={openCheckout} className="btn-primary w-full !min-h-0 py-3">
-              إتمام الطلب COD
+              إتمام الطلب — الدفع عند الاستلام
             </button>
           </div>
         )}

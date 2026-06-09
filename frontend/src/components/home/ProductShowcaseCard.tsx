@@ -46,7 +46,7 @@ export function ProductShowcaseCard({ product }: { product: Product }) {
         <div className="flex items-center justify-between gap-3 border-t border-brand-border pt-4">
           <p className="text-base font-extrabold text-brand-text">{formatPriceFrom(getLowestOfferPrice(product))}</p>
           <button type="button" onClick={() => addOffer(product, defaultOffer)} className="btn-primary !min-h-0 px-5 py-3 text-sm">
-            اطلبي COD
+            اطلبي عند الاستلام
           </button>
         </div>
       </div>

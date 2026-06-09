@@ -9,7 +9,7 @@ export const products: Product[] = [
     name: 'أروما فيوجن — ريحة بيت تهدّي التوتر',
     shortName: 'أروما فيوجن',
     routineNameLocal: 'روتين الراحة',
-    routineNameEnglish: 'Calm Home Routine',
+    routineNameEnglish: 'روتين هدوء البيت',
     category: 'home-fragrance',
     format: 'diffuser-spray',
     targetCustomer: 'سيدات الإمارات اللي يحسّون بالتوتر والصداع النفسي في البيت',
@@ -75,10 +75,10 @@ export const products: Product[] = [
       expertQuote:
         'الرائحة المناسبة في البيت تغيّر المزاج خلال دقائق. مزيج أروما فيوجن مصمم يهدّي الأجواء بدون ما يكون ثقيل أو مزعج.',
       stats: [
-        { value: '+1,200', label: 'عميلة راضية في الإمارات' },
-        { value: '4.9', label: 'تقييم متوسط' },
-        { value: '30', label: 'يوم ضمان' },
-        { value: '1-3', label: 'أيام توصيل' },
+        { value: '+١٬٢٠٠', label: 'عميلة راضية في الإمارات' },
+        { value: '٤٫٩', label: 'تقييم متوسط' },
+        { value: '٣٠', label: 'يوم ضمان' },
+        { value: '١-٣', label: 'أيام توصيل' },
       ],
     },
     timeline: [
@@ -96,7 +96,7 @@ export const products: Product[] = [
     },
     delivery: {
       cities: ['دبي', 'أبوظبي', 'الشارقة', 'عجمان', 'أم القيوين', 'رأس الخيمة', 'الفجيرة'],
-      carriers: ['Aramex', 'SMSA', 'Quiqup'],
+      carriers: ['أرامكس', 'سمسا', 'كويك أب'],
     },
     images: {
       heroBeforeAfter: '',
@@ -127,7 +127,7 @@ export const products: Product[] = [
     name: 'طقوس الورد — مصباح أروما + زيت الورد',
     shortName: 'طقوس الورد',
     routineNameLocal: 'روتين الورد',
-    routineNameEnglish: 'Rose Ritual',
+    routineNameEnglish: 'طقوس الورد',
     category: 'skin-hydration',
     format: 'aroma-lamp-kit',
     targetCustomer: 'سيدات الإمارات اللي يعانين من جفاف البشرة ويبون روتين هدوء في البيت',
@@ -194,10 +194,10 @@ export const products: Product[] = [
       expertQuote:
         'زيت الورد من أقدم المكونات لدعم ترطيب البشرة. مع مصباح الأروما، تحصلين على روتين كامل — بشرة أنعم وأجواء أهدأ.',
       stats: [
-        { value: '+800', label: 'عميلة راضية في الإمارات' },
-        { value: '4.9', label: 'تقييم متوسط' },
-        { value: '30', label: 'يوم ضمان' },
-        { value: '1-3', label: 'أيام توصيل' },
+        { value: '+٨٠٠', label: 'عميلة راضية في الإمارات' },
+        { value: '٤٫٩', label: 'تقييم متوسط' },
+        { value: '٣٠', label: 'يوم ضمان' },
+        { value: '١-٣', label: 'أيام توصيل' },
       ],
     },
     timeline: [
@@ -215,7 +215,7 @@ export const products: Product[] = [
     },
     delivery: {
       cities: ['دبي', 'أبوظبي', 'الشارقة', 'عجمان', 'أم القيوين', 'رأس الخيمة', 'الفجيرة'],
-      carriers: ['Aramex', 'SMSA', 'Quiqup'],
+      carriers: ['أرامكس', 'سمسا', 'كويك أب'],
     },
     images: {
       heroBeforeAfter: '',
@@ -246,7 +246,7 @@ export const products: Product[] = [
     name: 'سيروم عود دبي — عناية فاخرة كل يوم',
     shortName: 'سيروم العود',
     routineNameLocal: 'روتين العود',
-    routineNameEnglish: 'Oud Routine',
+    routineNameEnglish: 'روتين العود',
     category: 'personal-fragrance',
     format: 'serum',
     targetCustomer: 'رجال ونساء الإمارات اللي يبون ريحة عود فاخرة تدوم',
@@ -312,10 +312,10 @@ export const products: Product[] = [
       expertQuote:
         'الفرق بين السيروم والبخاخ العادي هو الثبات. سيروم عود دبي مصمم يطلق الرائحة تدريجياً — هذي سر الفخامة.',
       stats: [
-        { value: '+900', label: 'عميل راضي' },
-        { value: '4.8', label: 'تقييم' },
-        { value: '30', label: 'يوم ضمان' },
-        { value: '1-3', label: 'أيام توصيل' },
+        { value: '+٩٠٠', label: 'عميل راضي' },
+        { value: '٤٫٨', label: 'تقييم' },
+        { value: '٣٠', label: 'يوم ضمان' },
+        { value: '١-٣', label: 'أيام توصيل' },
       ],
     },
     timeline: [
@@ -333,7 +333,7 @@ export const products: Product[] = [
     },
     delivery: {
       cities: ['دبي', 'أبوظبي', 'الشارقة', 'عجمان', 'أم القيوين', 'رأس الخيمة', 'الفجيرة'],
-      carriers: ['Aramex', 'SMSA', 'Quiqup'],
+      carriers: ['أرامكس', 'سمسا', 'كويك أب'],
     },
     images: {
       heroBeforeAfter: '',

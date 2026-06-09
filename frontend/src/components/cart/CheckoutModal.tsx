@@ -25,7 +25,7 @@ export function CheckoutModal() {
     <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/40 p-4 sm:items-center">
       <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-3xl border border-brand-border bg-white p-6 shadow-luxury">
         <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-xl font-extrabold text-brand-text">تأكيد الطلب COD</h2>
+          <h2 className="text-xl font-extrabold text-brand-text">تأكيد الطلب — الدفع عند الاستلام</h2>
           <button type="button" onClick={closeCheckout} className="rounded-full p-2 hover:bg-brand-primary-soft">
             <Icon name="close" />
           </button>
