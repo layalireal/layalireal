@@ -29,7 +29,7 @@ export interface ProductPageMarketing {
   ctaTemplate: string;
   stickyCtaTemplate: string;
   trustStrip: { id: string; label: string; sublabel: string; icon: string }[];
-  problemInsight: { headline: string; stat: string; source: string };
+  problemInsight: { headline: string; percentage: string; stat: string; source: string };
   painCards: PainCard[];
   failureAlternatives: FailureAlternative[];
   mechanism: { headline: string; subheadline: string; points: string[] };
