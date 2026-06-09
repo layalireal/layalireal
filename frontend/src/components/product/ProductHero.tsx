@@ -7,7 +7,8 @@ export function ProductHeroImage({ product }: { product: Product }) {
   if (hasImage) {
     return (
       <PremiumImagePlaceholder
-        aspect="hero"
+        aspect="square"
+        objectFit="contain"
         label={product.imageAlts.heroProduct}
         imageUrl={product.images.heroBeforeAfter || product.images.heroProduct}
         alt={product.imageAlts.heroProduct}

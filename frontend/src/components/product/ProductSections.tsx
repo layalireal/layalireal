@@ -34,7 +34,12 @@ export function ProblemInsightSection({ product, marketing }: { product: Product
   return (
     <section className="px-4 py-10">
       <div className="mx-auto max-w-4xl">
-        <PremiumImagePlaceholder label={product.imageAlts.problemImage} imageUrl={product.images.problemImage} aspect="hero" />
+        <PremiumImagePlaceholder
+          label={product.imageAlts.problemImage}
+          imageUrl={product.images.problemImage}
+          aspect="product"
+          objectFit="contain"
+        />
         <div className="mt-4 rounded-2xl bg-brand-primary p-4 text-white">
           <p className="text-sm leading-7">{marketing.problemInsight.stat}</p>
           <p className="mt-2 text-xs text-white/60">{marketing.problemInsight.source}</p>
@@ -139,7 +144,13 @@ export function IngredientBreakdown({ product, marketing }: { product: Product; 
     <section className="bg-brand-background px-4 py-10">
       <div className="mx-auto max-w-4xl">
         <SectionHeading title={marketing.ingredients.headline} />
-        <PremiumImagePlaceholder label={product.imageAlts.ingredientImage} imageUrl={product.images.ingredientImage} aspect="hero" className="mb-6" />
+        <PremiumImagePlaceholder
+          label={product.imageAlts.ingredientImage}
+          imageUrl={product.images.ingredientImage}
+          aspect="square"
+          objectFit="contain"
+          className="mb-6"
+        />
         <div className="space-y-4">
           {marketing.ingredients.items.map((ing) => (
             <div key={ing.name} className="rounded-2xl border border-brand-border bg-brand-card p-5">

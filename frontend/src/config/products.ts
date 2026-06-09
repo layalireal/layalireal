@@ -1,5 +1,6 @@
 import type { Product } from '@/types/product';
 import { getLowestOfferPrice } from '@/types/product';
+import { publicAsset } from '@/lib/publicAsset';
 
 export const products: Product[] = [
   {
@@ -219,9 +220,9 @@ export const products: Product[] = [
     },
     images: {
       heroBeforeAfter: '',
-      heroProduct: '',
-      problemImage: '',
-      ingredientImage: '',
+      heroProduct: publicAsset('products/rose/ChatGPT Image Jun 10, 2026, 12_33_23 AM.png'),
+      problemImage: publicAsset('products/rose/WhatsApp Image 2026-06-04 at 01.15.52.jpg'),
+      ingredientImage: publicAsset('products/rose/ChatGPT Image Jun 9, 2026, 11_19_28 PM.png'),
       authorityImage: '',
       lifestyleImage: '',
       testimonialImage: '',
@@ -229,9 +230,9 @@ export const products: Product[] = [
     },
     imageAlts: {
       heroBeforeAfter: 'قبل وبعد ترطيب البشرة مع طقوس الورد',
-      heroProduct: 'مصباح أروما وزيت الورد',
-      problemImage: 'جفاف البشرة من التكييف',
-      ingredientImage: 'زيت الورد الطبيعي',
+      heroProduct: 'طقوس الورد — مصباح أروما وزيت الورد',
+      problemImage: 'جفاف البشرة من التكييف في الإمارات',
+      ingredientImage: 'مكونات طقوس الورد — زيت ورد وسيروم',
       authorityImage: 'خبيرة عناية طبيعية',
       lifestyleImage: 'بيت هادئ مع أروما الورد',
       testimonialImage: 'عميلة راضية',
