@@ -49,13 +49,14 @@ export function HomeHero({ marketing }: { marketing: SiteMarketing }) {
 
           <div className="relative order-1 flex justify-center lg:order-2">
             <div className="absolute inset-0 scale-125 rounded-full bg-brand-primary/15 blur-3xl" />
-            <div className="relative aspect-square w-full max-w-lg overflow-hidden rounded-5xl border-8 border-white bg-brand-surface-rose shadow-2xl">
+            <div className="relative w-full max-w-xl overflow-hidden rounded-5xl border-8 border-white bg-white shadow-2xl">
               <PremiumImagePlaceholder
-                aspect="square"
+                aspect="landscape"
+                objectFit="contain"
                 label={`${brand.nameLocal} — ${brand.tagline}`}
                 imageUrl={homeImages.hero}
                 alt="ليالي للجمال — طقوس أروما فاخرة للبيت والعناية"
-                className="h-full rounded-none border-0 shadow-none"
+                className="rounded-none border-0 shadow-none"
               />
             </div>
             <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-2xl border border-brand-border bg-white p-4 shadow-xl">
