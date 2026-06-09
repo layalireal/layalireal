@@ -30,6 +30,8 @@ export function ProductShowcaseCard({
             label={product.imageAlts.heroProduct}
             imageUrl={imageUrl ?? product.images.heroProduct}
             alt={product.imageAlts.heroProduct}
+            aspect={imageUrl ? 'square' : 'product'}
+            objectFit={imageUrl ? 'contain' : 'cover'}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </Link>

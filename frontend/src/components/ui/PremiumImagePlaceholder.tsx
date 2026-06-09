@@ -2,16 +2,19 @@ import { businessConfig } from '@/config/business';
 
 interface PremiumImagePlaceholderProps {
   label: string;
-  aspect?: 'square' | 'hero' | 'product';
+  aspect?: 'square' | 'hero' | 'product' | 'landscape' | 'natural';
   imageUrl?: string;
   alt?: string;
   className?: string;
+  objectFit?: 'cover' | 'contain';
 }
 
 const aspectMap = {
   square: 'aspect-square',
   hero: 'aspect-[4/5] sm:aspect-[16/11]',
   product: 'aspect-[4/5]',
+  landscape: 'aspect-[5/4]',
+  natural: '',
 };
 
 export function PremiumImagePlaceholder({
@@ -20,12 +23,37 @@ export function PremiumImagePlaceholder({
   imageUrl,
   alt,
   className = '',
+  objectFit = 'cover',
 }: PremiumImagePlaceholderProps) {
   if (imageUrl) {
+    const aspectClass = aspectMap[aspect];
+    const fitClass = objectFit === 'contain' ? 'object-contain' : 'object-cover';
+
+    if (aspect === 'natural' || objectFit === 'contain') {
+      return (
+        <div
+          className={`overflow-hidden rounded-3xl bg-white ${aspectClass} ${className} ${
+            objectFit === 'contain' && aspect !== 'natural' ? 'flex items-center justify-center' : ''
+          }`}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={imageUrl}
+            alt={alt ?? label}
+            className={
+              aspect === 'natural'
+                ? `h-auto w-full ${fitClass}`
+                : `h-full w-full ${fitClass}`
+            }
+          />
+        </div>
+      );
+    }
+
     return (
-      <div className={`overflow-hidden rounded-3xl bg-brand-card ${aspectMap[aspect]} ${className}`}>
+      <div className={`overflow-hidden rounded-3xl bg-brand-card ${aspectClass} ${className}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={imageUrl} alt={alt ?? label} className="h-full w-full object-cover" />
+        <img src={imageUrl} alt={alt ?? label} className={`h-full w-full ${fitClass}`} />
       </div>
     );
   }
