@@ -23,32 +23,54 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
         ? 'روتين أروما'
         : 'بخاخ';
 
-  const painCards = [
-    {
-      id: 'pain-1',
-      pain: product.emotionalPain,
-      solution: `${product.shortName} يدعم ${product.desiredOutcome} بـ${product.mainIngredient}.`,
-    },
-    {
-      id: 'pain-2',
-      pain: `جربتِ حلول ثانية وما نفعت مع ${product.problem}؟`,
-      solution: product.mechanism,
-    },
-    {
-      id: 'pain-3',
-      pain: 'تبي شي يشتغل من أول استخدام — مو وعود فاضية؟',
-      solution: `تركيبة ${product.shortName} مصممة تدعم ${product.desiredOutcome} مع استخدام يومي بسيط.`,
-    },
-  ];
+  const isRoseAcRitual = product.id === 'layali-aroma-rose-kit-001';
+
+  const painCards = isRoseAcRitual
+    ? [
+        {
+          id: 'pain-1',
+          pain: product.emotionalPain,
+          solution: `${product.shortName} روتين مسائي يرطّب البشرة بعد التكييف ويهدّي بيتك في نفس الوقت.`,
+        },
+        {
+          id: 'pain-2',
+          pain: 'قضيتِ ٨–١٠ ساعات فالتكييف ولا كريم عادي كيفيك؟',
+          solution: product.mechanism,
+        },
+        {
+          id: 'pain-3',
+          pain: 'بغيتي بيتك يبان فخم قبل الضيافة — وانتِ نفسك مرطّبة ومتألقة؟',
+          solution: `٢٠ دقيقة ورد: مصباح أروما لريحة سبا فاخرة + سيروم الورد لبشرة ناعمة — روتين واحد.`,
+        },
+      ]
+    : [
+        {
+          id: 'pain-1',
+          pain: product.emotionalPain,
+          solution: `${product.shortName} يدعم ${product.desiredOutcome} بـ${product.mainIngredient}.`,
+        },
+        {
+          id: 'pain-2',
+          pain: `جربتِ حلول ثانية وما نفعت مع ${product.problem}؟`,
+          solution: product.mechanism,
+        },
+        {
+          id: 'pain-3',
+          pain: 'تبي شي يشتغل من أول استخدام — مو وعود فاضية؟',
+          solution: `تركيبة ${product.shortName} مصممة تدعم ${product.desiredOutcome} مع استخدام يومي بسيط.`,
+        },
+      ];
 
   const failureAlternatives =
     product.category === 'skin-hydration' || product.format === 'aroma-lamp-kit'
       ? [
           {
             id: 'alt-1',
-            name: 'كريمات ترطيب عادية',
+            name: isRoseAcRitual ? 'كريمات ترطيب بعد التكييف' : 'كريمات ترطيب عادية',
             priceRange: '٨٠ – ٢٠٠ د.إ',
-            reasons: ['ترطيب سطحي بس', 'ما تعالج أجواء البيت', 'تحتاج تعيد كل يوم', 'ما فيها أروما'],
+            reasons: isRoseAcRitual
+              ? ['ما تعالجون سبب الجفاف: التكييف', 'ترطيب سطحي بس', 'ما فيها روتين مسائي', 'ما فيها أروما للبيت']
+              : ['ترطيب سطحي بس', 'ما تعالج أجواء البيت', 'تحتاج تعيد كل يوم', 'ما فيها أروما'],
           },
           {
             id: 'alt-2',
@@ -129,9 +151,22 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
   const uaeNames = ['فاطمة الكعبي', 'مريم الشامسي', 'نورة المنصوري'];
   const uaeCities = ['دبي', 'أبوظبي', 'الشارقة'];
 
+  const roseFaqAc = isRoseAcRitual
+    ? {
+        id: 'faq-ac',
+        question: 'هل ينفع مع جفاف البشرة من التكييف في الإمارات؟',
+        answer:
+          'إيه، طقوس الورد صُمّمت لهاد الجو: سيروم الورد يرطّب البشرة بعد يوم طويل فالتكييف، ومصباح الأروما يهدّي البيت مساءً. روتين ٢٠ دقيقة قبل النوم.',
+      }
+    : null;
+
   return {
-    announcement: `${cod.paymentLabel} • ${cod.deliveryPromise}`,
-    scarcity: `عرض محدود هذا الأسبوع — ${product.reviewsCount}+ تقييم • ${product.rating} نجوم`,
+    announcement: isRoseAcRitual
+      ? `روتين ما بعد التكييف — ${cod.paymentLabel}`
+      : `${cod.paymentLabel} • ${cod.deliveryPromise}`,
+    scarcity: isRoseAcRitual
+      ? `روتين مسائي ٢٠ دقيقة — ${product.reviewsCount}+ عميلة في الإمارات • ${product.rating} نجوم`
+      : `عرض محدود هذا الأسبوع — ${product.reviewsCount}+ تقييم • ${product.rating} نجوم`,
     painHeadline: product.heroHeadline,
     painSubheadline: product.heroSubheadline,
     offerSelectorTitle: 'اختاري العرض:',
@@ -176,7 +211,14 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
       ],
     testimonials: uaeNames.map((name, i) => ({
       id: `t-${i}`,
-      quote: `بعد ما عانيت من ${product.problem}، ${product.shortName} ساعدني أحس بـ${product.desiredOutcome}. الحين ما أستغني عنه.`,
+      quote: isRoseAcRitual
+        ? [
+            'بعد يوم كامل فالتكييف كانت بشرتي مشدودة. روتين الورد المسائي رجّع لي الترطيب — والبيت صار يبان كسبا فندق.',
+            'كنت نحط كريم وخلاص. باقة ما بعد التكييف غيّرت الموضوع — سيروم + مصباح ورد، ٢٠ دقيقة ونمت مرتاحة.',
+            'قبل الضيافة كنشعل المصباح — ريحة ورد فاخرة والبشرة مرطّبة. هاد الروتين ولى جزء من يومي.',
+          ][i] ??
+          `بعد ما عانيت من ${product.problem}، ${product.shortName} ساعدني أحس بـ${product.desiredOutcome}.`
+        : `بعد ما عانيت من ${product.problem}، ${product.shortName} ساعدني أحس بـ${product.desiredOutcome}. الحين ما أستغني عنه.`,
       name,
       meta: `${['٣٤', '٢٩', '٤١'][i]} سنة • ${uaeCities[i]} • مشترية مؤكدة`,
       initial: name.charAt(0),
@@ -194,8 +236,15 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
       ],
     },
     offerRecap: {
-      headline: `باقة ${product.shortName} — عرض خاص`,
-      benefits: [cod.paymentLabel, cod.deliveryPromise, cod.returnGuarantee, product.mechanism.slice(0, 80)],
+      headline: isRoseAcRitual ? 'باقة ما بعد التكييف — عرض خاص' : `باقة ${product.shortName} — عرض خاص`,
+      benefits: isRoseAcRitual
+        ? [
+            cod.paymentLabel,
+            'مصباح أروما + زيت ورد 30ml + سيروم الورد',
+            'روتين مسائي ٢٠ دقيقة — مصمم لجو الإمارات',
+            cod.returnGuarantee,
+          ]
+        : [cod.paymentLabel, cod.deliveryPromise, cod.returnGuarantee, product.mechanism.slice(0, 80)],
     },
     guarantee: {
       headline: cod.returnGuarantee,
@@ -227,8 +276,11 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
         {
           id: 'faq-results',
           question: 'متى بألاحظ النتيجة؟',
-          answer: `مع الاستخدام المنتظم، بعض العميلات يلاحظون فرق خلال أسابيع. النتيجة تختلف حسب ${product.problem}.`,
+          answer: isRoseAcRitual
+            ? 'من أول مساء كثير عميلات يحسّون ببشرة أقل شدّاً. مع روتين ٢٠ دقيقة يومياً، الترطيب يتحسّن تدريجياً خلال أسابيع — خاصة إذا كنتِ قضيتِ يوم طويل فالتكييف.'
+            : `مع الاستخدام المنتظم، بعض العميلات يلاحظون فرق خلال أسابيع. النتيجة تختلف حسب ${product.problem}.`,
         },
+        ...(roseFaqAc ? [roseFaqAc] : []),
         {
           id: 'faq-safe',
           question: `هل ${product.shortName} آمن للاستخدام اليومي؟`,
@@ -255,7 +307,9 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
     timelineSection: { eyebrow: 'النتائج المتوقعة', headline: 'وش ممكن تلاحظين مع الوقت؟' },
     howToUse: {
       headline: product.usage?.headline ?? `طريقة استخدام ${formatLabel}`,
-      subheadline: 'روتين بسيط — ٣٠ ثانية باليوم',
+      subheadline: isRoseAcRitual
+        ? 'روتين مسائي ٢٠ دقيقة — بعد يوم فالتكييف'
+        : 'روتين بسيط — ٣٠ ثانية باليوم',
       steps: usageSteps.map((body, i) => ({
         title: ['الخطوة ١', 'الخطوة ٢', 'الخطوة ٣'][i] ?? `خطوة ${i + 1}`,
         body,
