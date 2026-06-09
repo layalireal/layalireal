@@ -15,7 +15,7 @@ export function HomePage() {
 
   return (
     <>
-      <AnnouncementBar text={marketing.announcement} />
+      <AnnouncementBar messages={marketing.announcements} />
       <HomeHero marketing={marketing} />
       <FeaturedProducts products={products} marketing={marketing} />
       <WhyBrand marketing={marketing} />

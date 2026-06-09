@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { IBM_Plex_Sans_Arabic, Inter, Playfair_Display } from 'next/font/google';
 import { businessConfig } from '@/config/business';
 import { getThemeCssVariables } from '@/lib/theme';
 import { CartProvider } from '@/lib/cart-context';
@@ -10,6 +11,25 @@ import { UpsellModal } from '@/components/cart/UpsellModal';
 import { generateMarketing } from '@/lib/marketing/generateMarketing';
 import { products } from '@/config/products';
 import './globals.css';
+
+const ibmArabic = IBM_Plex_Sans_Arabic({
+  subsets: ['arabic', 'latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-arabic',
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-latin',
+  display: 'swap',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+});
 
 const marketing = generateMarketing(products);
 const themeVars = getThemeCssVariables();
@@ -23,11 +43,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const { market } = businessConfig;
 
   return (
-    <html lang={market.language} dir={market.direction}>
-      <body style={themeVars as React.CSSProperties}>
+    <html
+      lang={market.language}
+      dir={market.direction}
+      className={`${ibmArabic.variable} ${inter.variable} ${playfair.variable}`}
+    >
+      <body className="flex min-h-screen flex-col" style={themeVars as React.CSSProperties}>
         <CartProvider>
           <SiteHeader />
-          <main>{children}</main>
+          <main className="flex-1">{children}</main>
           <SiteFooter marketing={marketing} />
           <CartDrawer />
           <CheckoutModal />

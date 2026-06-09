@@ -138,9 +138,9 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
     ctaTemplate: `ابدئي ${product.shortName} الآن`,
     stickyCtaTemplate: `ابدئي ${product.shortName} الآن`,
     trustStrip: [
-      { id: 'cod', label: cod.paymentLabel, sublabel: 'بدون التزام', icon: 'heart' },
+      { id: 'cod', label: 'الدفع عند الاستلام', sublabel: 'بدون دفع أونلاين', icon: 'heartHandshake' },
       { id: 'ship', label: cod.deliveryPromise, sublabel: market.countryName, icon: 'truck' },
-      { id: 'guarantee', label: cod.returnGuarantee, sublabel: 'استرجاع كامل', icon: 'shield' },
+      { id: 'guarantee', label: 'ضمان 30 يوم', sublabel: 'استرجاع كامل', icon: 'shield' },
       { id: 'quality', label: product.badges[1] ?? 'جودة معتمدة', sublabel: brand.nameLocal, icon: 'flask' },
     ],
     problemInsight: {

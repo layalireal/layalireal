@@ -61,17 +61,23 @@ export function generateMarketing(productList: Product[]): SiteMarketing {
   const productNames = productList.map((p) => p.shortName).join('، ');
 
   return {
-    announcement: `${formatLabel} سريرية مرخصة — الدفع عند الاستلام في ${market.countryName}`,
+    announcements: [
+      `${formatLabel} فاخرة — الدفع عند الاستلام في ${market.countryName}`,
+      businessConfig.cod.returnGuarantee,
+      businessConfig.cod.deliveryPromise,
+    ],
+    announcement: `${formatLabel} فاخرة — الدفع عند الاستلام في ${market.countryName}`,
     hero: {
-      eyebrow: brand.tagline,
+      eyebrow: `${brand.tagline} · ${market.countryName}`,
       headline:
         count > 1
-          ? `${toArabicNumber(count)} ${formatLabel} سريرية. حلول واضحة لـ${problems}`
-          : `${formatLabel} سريرية لـ${productList[0]?.problem ?? 'جمالك'}`,
+          ? `${toArabicNumber(count)} تركيبات سريرية`
+          : `${formatLabel} سريرية`,
+      headlineAccent: 'لجمال يبدأ من البيت',
       subheadline: `${brand.description} تركيبات مبنية على ${ingredients} بجرعات مدروسة لنتائج تدريجية وواضحة.`,
       cta: `استكشفي ${formatLabel} الآن`,
-      proofLabel: 'دفع عند الاستلام',
-      proofTitle: `ضمان ٣٠ يوم • ${market.countryName}`,
+      proofLabel: 'ضمان استرجاع 30 يوم',
+      proofTitle: 'مرخّصة · حلال · COD',
     },
     formulations: {
       eyebrow: 'OUR FORMULATIONS',
@@ -116,10 +122,10 @@ export function generateMarketing(productList: Product[]): SiteMarketing {
       ],
     },
     trustBadges: [
-      { id: 'cod', label: 'الدفع عند الاستلام', icon: 'heart' },
-      { id: 'halal', label: 'حلال ١٠٠٪', icon: 'leaf' },
-      { id: 'gmp', label: 'تصنيع طبي GMP', icon: 'flask' },
-      { id: 'guarantee', label: 'ضمان ٣٠ يوم', icon: 'shield' },
+      { id: 'cod', label: 'COD', sublabel: 'الدفع عند الاستلام', icon: 'heartHandshake' },
+      { id: 'halal', label: 'حلال', sublabel: 'نباتي 100%', icon: 'leaf' },
+      { id: 'gmp', label: 'GMP', sublabel: 'تصنيع طبي', icon: 'flask' },
+      { id: 'guarantee', label: '30 يوم', sublabel: 'ضمان استرجاع', icon: 'shield' },
     ],
     testimonials: {
       eyebrow: 'VERIFIED REVIEWS',
@@ -167,6 +173,7 @@ export function generateMarketing(productList: Product[]): SiteMarketing {
       headline: 'جمالك يستحق علم، مو وعود',
       subheadline: `ابدئي روتينك السريري اليوم. دفع عند الاستلام، شحن داخل ${market.countryName}، وضمان استرجاع ٣٠ يوم.`,
       cta: `استكشفي ${formatLabel} الآن`,
+      chips: ['الدفع عند الاستلام', 'حلال 100%', `شحن ${market.countryName}`, 'ضمان 30 يوم'],
     },
     faq: {
       eyebrow: 'FAQ',

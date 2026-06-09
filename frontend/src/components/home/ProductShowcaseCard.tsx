@@ -11,40 +11,41 @@ import { useCart } from '@/lib/cart-context';
 export function ProductShowcaseCard({ product }: { product: Product }) {
   const { addOffer } = useCart();
   const defaultOffer = getDefaultOffer(product);
-  const badge = product.badges[0] ?? product.shortName;
 
   return (
-    <article className="overflow-hidden rounded-3xl border border-brand-border bg-brand-card shadow-luxury">
+    <article className="group nama-card h-full overflow-hidden">
       <div className="relative p-4 pb-0">
-        <span className="absolute top-6 right-6 z-10 rounded-full bg-brand-accent/15 px-3 py-1 text-xs font-medium text-brand-primary">
-          {badge} • {product.routineNameLocal}
+        <span className="absolute top-6 right-6 z-10 rounded-full border border-brand-primary/15 bg-brand-primary/5 px-3 py-1 text-xs font-bold text-brand-primary">
+          {product.routineNameLocal}
         </span>
-        <Link href={`/products/${product.slug}`}>
+        <Link href={`/products/${product.slug}`} className="block overflow-hidden rounded-2xl">
           <PremiumImagePlaceholder
             label={product.imageAlts.heroProduct}
             imageUrl={product.images.heroProduct}
             alt={product.imageAlts.heroProduct}
+            className="transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </Link>
       </div>
       <div className="space-y-4 p-5">
         <div>
+          <p className="text-xs font-bold text-brand-secondary">{product.routineNameEnglish}</p>
           <Link href={`/products/${product.slug}`}>
-            <h3 className="text-lg font-bold leading-8 text-brand-text">{product.name}</h3>
+            <h3 className="mt-1 text-lg font-extrabold leading-8 text-brand-text transition-colors group-hover:text-brand-primary">
+              {product.name}
+            </h3>
           </Link>
           <p className="mt-2 text-sm leading-7 text-brand-muted">{product.cardSubheadline}</p>
         </div>
-        <div className="flex items-center gap-2 text-sm text-brand-accent">
+        <div className="flex items-center gap-2 text-sm text-brand-secondary">
           <Icon name="star" className="h-4 w-4 fill-current" />
-          <span>{product.rating} ({product.reviewsCount} تقييم)</span>
+          <span className="font-medium">
+            {product.rating} ({product.reviewsCount} تقييم)
+          </span>
         </div>
-        <div className="flex items-center justify-between gap-3">
-          <p className="text-base font-bold text-brand-text">{formatPriceFrom(getLowestOfferPrice(product))}</p>
-          <button
-            type="button"
-            onClick={() => addOffer(product, defaultOffer)}
-            className="rounded-full bg-brand-primary px-5 py-3 text-sm font-semibold text-white"
-          >
+        <div className="flex items-center justify-between gap-3 border-t border-brand-border pt-4">
+          <p className="text-base font-extrabold text-brand-text">{formatPriceFrom(getLowestOfferPrice(product))}</p>
+          <button type="button" onClick={() => addOffer(product, defaultOffer)} className="btn-primary !min-h-0 px-5 py-3 text-sm">
             اطلبي COD
           </button>
         </div>

@@ -3,19 +3,21 @@ import type { TrustBadge } from '@/types/marketing';
 
 export function TrustStrip({ badges }: { badges: TrustBadge[] }) {
   return (
-    <section className="px-4 pb-12 sm:px-6">
-      <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
-        {badges.map((badge) => (
-          <div
-            key={badge.id}
-            className="flex items-center gap-4 rounded-3xl border border-brand-border bg-brand-card p-5 shadow-luxury"
-          >
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-primary/10 text-brand-primary">
-              <Icon name={badge.icon} className="h-5 w-5" />
+    <section className="border-t border-brand-border bg-brand-primary-soft py-8">
+      <div className="section-shell">
+        <div className="grid gap-4 sm:grid-cols-3">
+          {badges.map((badge) => (
+            <div key={badge.id} className="flex items-center gap-3 rounded-2xl border border-brand-border bg-white px-4 py-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-primary text-brand-secondary">
+                <Icon name={badge.icon} className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-sm font-extrabold text-brand-text">{badge.label}</p>
+                {badge.sublabel && <p className="text-xs text-brand-muted">{badge.sublabel}</p>}
+              </div>
             </div>
-            <p className="text-sm font-medium leading-7 text-brand-text">{badge.label}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

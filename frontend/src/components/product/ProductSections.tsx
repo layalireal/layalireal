@@ -8,26 +8,18 @@ import { formatPrice, formatPriceFrom } from '@/lib/theme';
 import { businessConfig } from '@/config/business';
 import type { Product, ProductOffer } from '@/types/product';
 import { getLowestOfferPrice } from '@/types/product';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 import type { ProductPageMarketing } from '@/types/product-marketing';
-
-function SectionHeading({ eyebrow, title, subtitle }: { eyebrow?: string; title: string; subtitle?: string }) {
-  return (
-    <div className="mb-6 text-center">
-      {eyebrow && <p className="text-sm uppercase tracking-[0.2em] text-brand-accent">{eyebrow}</p>}
-      <h2 className="mt-2 text-2xl font-bold text-brand-text sm:text-3xl">{title}</h2>
-      {subtitle && <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-brand-muted">{subtitle}</p>}
-    </div>
-  );
-}
+import type { IconName } from '@/components/ui/Icon';
 
 export function ProductTrustStrip({ items }: { items: ProductPageMarketing['trustStrip'] }) {
   return (
-    <div className="rounded-3xl bg-brand-primary p-5 text-white">
+    <div className="rounded-2xl bg-brand-primary p-5 text-white shadow-primary">
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         {items.map((item) => (
           <div key={item.id} className="text-center">
-            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-brand-accent/20 text-brand-accent">
-              <Icon name={item.icon as 'shield'} className="h-5 w-5" />
+            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-secondary/20 text-brand-secondary">
+              <Icon name={item.icon as IconName} className="h-5 w-5" />
             </div>
             <p className="text-xs font-semibold">{item.label}</p>
             <p className="mt-1 text-[10px] text-white/70">{item.sublabel}</p>
@@ -59,13 +51,13 @@ export function ProblemAgitationSection({ marketing }: { marketing: ProductPageM
         <SectionHeading title="تعانين من هالشي؟" subtitle="مشاكل تعرفينها — وحلول مختلفة" />
         <div className="space-y-4">
           {marketing.painCards.map((card) => (
-            <div key={card.id} className="overflow-hidden rounded-3xl border border-brand-border bg-brand-card shadow-luxury">
+            <div key={card.id} className="nama-card overflow-hidden">
               <div className="flex gap-3 p-4">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600">✕</span>
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-secondary-soft text-brand-primary">✕</span>
                 <p className="text-sm leading-7 text-brand-text">{card.pain}</p>
               </div>
-              <div className="flex gap-3 bg-brand-primary/5 p-4">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-700">✓</span>
+              <div className="flex gap-3 bg-brand-primary-soft p-4">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-primary text-brand-secondary">✓</span>
                 <p className="text-sm leading-7 text-brand-text">{card.solution}</p>
               </div>
             </div>
@@ -272,15 +264,22 @@ export function OfferRecap({
 }) {
   return (
     <section className="px-4 py-10">
-      <div className="mx-auto max-w-4xl rounded-3xl bg-brand-primary p-6 text-white">
-        <h2 className="text-2xl font-bold">{marketing.offerRecap.headline}</h2>
-        <p className="mt-2 text-3xl font-bold text-brand-accent">{formatPrice(offer.price)}</p>
+      <div className="mx-auto max-w-4xl rounded-4xl bg-brand-primary p-8 text-white shadow-primary">
+        <h2 className="text-2xl font-extrabold">{marketing.offerRecap.headline}</h2>
+        <p className="mt-2 text-3xl font-extrabold text-brand-secondary">{formatPrice(offer.price)}</p>
         <ul className="mt-4 space-y-2">
           {marketing.offerRecap.benefits.map((b) => (
-            <li key={b} className="flex gap-2 text-sm"><span>✓</span>{b}</li>
+            <li key={b} className="flex gap-2 text-sm text-white/90">
+              <span className="text-brand-secondary">✓</span>
+              {b}
+            </li>
           ))}
         </ul>
-        <button type="button" onClick={onCta} className="mt-6 w-full rounded-full bg-brand-accent py-4 font-bold text-brand-primary-dark">
+        <button
+          type="button"
+          onClick={onCta}
+          className="mt-6 w-full rounded-2xl bg-brand-secondary py-4 font-extrabold text-brand-primary-dark transition hover:opacity-90"
+        >
           {marketing.ctaTemplate} · {formatPrice(offer.price)}
         </button>
       </div>

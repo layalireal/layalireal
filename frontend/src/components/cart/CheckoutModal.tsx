@@ -1,75 +1,56 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useCart } from '@/lib/cart-context';
+import { useState } from 'react';
 import { Icon } from '@/components/ui/Icon';
 import { businessConfig } from '@/config/business';
+import { useCart } from '@/lib/cart-context';
 
-const emirates = ['دبي', 'أبوظبي', 'الشارقة', 'عجمان', 'أم القيوين', 'رأس الخيمة', 'الفجيرة'];
+const EMIRATES = ['دبي', 'أبوظبي', 'الشارقة', 'عجمان', 'أم القيوين', 'رأس الخيمة', 'الفجيرة'];
 
 export function CheckoutModal() {
-  const router = useRouter();
-  const { checkoutOpen, closeCheckout, submitOrder, total, items } = useCart();
+  const { checkoutOpen, closeCheckout, submitOrder, total } = useCart();
   const [loading, setLoading] = useState(false);
-  const { market } = businessConfig;
+  const [form, setForm] = useState({ fullName: '', phone: '', emirate: EMIRATES[0], address: '', notes: '' });
 
   if (!checkoutOpen) return null;
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setLoading(true);
-    try {
-      const result = await submitOrder({
-        fullName: String(formData.get('fullName') ?? ''),
-        phone: String(formData.get('phone') ?? ''),
-        emirate: String(formData.get('emirate') ?? ''),
-        address: String(formData.get('address') ?? ''),
-        notes: String(formData.get('notes') ?? ''),
-      });
-      if (!result.hasUpsell) router.push('/thank-you');
-    } finally {
-      setLoading(false);
-    }
+    await submitOrder(form);
+    setLoading(false);
   };
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-end justify-center bg-black/50 p-4 sm:items-center">
-      <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-3xl bg-brand-card p-6 shadow-luxury">
+    <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/40 p-4 sm:items-center">
+      <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-3xl border border-brand-border bg-white p-6 shadow-luxury">
         <div className="mb-6 flex items-center justify-between">
-          <div>
-            <h2 className="text-xl font-bold text-brand-text">تأكيد الطلب COD</h2>
-            <p className="text-sm text-brand-muted">بدون دفع أونلاين — تدفعين عند الاستلام</p>
-          </div>
-          <button type="button" onClick={closeCheckout} className="rounded-full p-2">
+          <h2 className="text-xl font-extrabold text-brand-text">تأكيد الطلب COD</h2>
+          <button type="button" onClick={closeCheckout} className="rounded-full p-2 hover:bg-brand-primary-soft">
             <Icon name="close" />
           </button>
         </div>
-
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             required
-            name="fullName"
             placeholder="الاسم الكامل"
-            className="w-full rounded-2xl border border-brand-border bg-brand-background px-4 py-3"
+            value={form.fullName}
+            onChange={(e) => setForm({ ...form, fullName: e.target.value })}
+            className="w-full rounded-2xl border border-brand-border bg-brand-background px-4 py-3 text-sm outline-none focus:border-brand-primary"
           />
           <input
             required
-            name="phone"
-            placeholder={`${market.phoneCountryCode} ${market.phoneExample}`}
-            className="w-full rounded-2xl border border-brand-border bg-brand-background px-4 py-3"
+            placeholder={`رقم الجوال (${businessConfig.market.phoneCountryCode})`}
+            value={form.phone}
+            onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            className="w-full rounded-2xl border border-brand-border bg-brand-background px-4 py-3 text-sm outline-none focus:border-brand-primary"
           />
           <select
-            required
-            name="emirate"
-            defaultValue=""
-            className="w-full rounded-2xl border border-brand-border bg-brand-background px-4 py-3"
+            value={form.emirate}
+            onChange={(e) => setForm({ ...form, emirate: e.target.value })}
+            className="w-full rounded-2xl border border-brand-border bg-brand-background px-4 py-3 text-sm outline-none focus:border-brand-primary"
           >
-            <option value="" disabled>
-              اختاري الإمارة
-            </option>
-            {emirates.map((emirate) => (
+            {EMIRATES.map((emirate) => (
               <option key={emirate} value={emirate}>
                 {emirate}
               </option>
@@ -77,31 +58,20 @@ export function CheckoutModal() {
           </select>
           <textarea
             required
-            name="address"
-            rows={3}
             placeholder="العنوان التفصيلي"
-            className="w-full rounded-2xl border border-brand-border bg-brand-background px-4 py-3"
+            value={form.address}
+            onChange={(e) => setForm({ ...form, address: e.target.value })}
+            className="min-h-24 w-full rounded-2xl border border-brand-border bg-brand-background px-4 py-3 text-sm outline-none focus:border-brand-primary"
           />
           <textarea
-            name="notes"
-            rows={2}
             placeholder="ملاحظات (اختياري)"
-            className="w-full rounded-2xl border border-brand-border bg-brand-background px-4 py-3"
+            value={form.notes}
+            onChange={(e) => setForm({ ...form, notes: e.target.value })}
+            className="min-h-20 w-full rounded-2xl border border-brand-border bg-brand-background px-4 py-3 text-sm outline-none focus:border-brand-primary"
           />
-
-          <div className="rounded-2xl bg-brand-background p-4 text-sm text-brand-muted">
-            <p>
-              {items.length} منتج • {total} {market.currencySymbol}
-            </p>
-            <p className="mt-2">فريقنا بيتصل فيك لتأكيد العنوان قبل الشحن.</p>
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded-full bg-brand-primary px-6 py-4 font-semibold text-white disabled:opacity-60"
-          >
-            {loading ? 'جاري الإرسال...' : 'أكدي الطلب — COD'}
+          <p className="text-sm font-bold text-brand-primary">المجموع: {total} {businessConfig.market.currencySymbol}</p>
+          <button type="submit" disabled={loading} className="btn-primary w-full !min-h-0 py-4 disabled:opacity-60">
+            {loading ? 'جاري الإرسال...' : 'تأكيد الطلب — الدفع عند الاستلام'}
           </button>
         </form>
       </div>

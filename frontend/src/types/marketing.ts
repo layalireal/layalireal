@@ -1,7 +1,8 @@
 export interface TrustBadge {
   id: string;
   label: string;
-  icon: 'shield' | 'leaf' | 'flask' | 'heart' | 'truck' | 'clock';
+  sublabel?: string;
+  icon: 'shield' | 'leaf' | 'flask' | 'heart' | 'truck' | 'clock' | 'award' | 'heartHandshake';
 }
 
 export interface AuthorityCard {
@@ -34,10 +35,12 @@ export interface FaqItem {
 }
 
 export interface SiteMarketing {
+  announcements: string[];
   announcement: string;
   hero: {
     eyebrow: string;
     headline: string;
+    headlineAccent?: string;
     subheadline: string;
     cta: string;
     proofLabel: string;
@@ -72,6 +75,7 @@ export interface SiteMarketing {
     headline: string;
     subheadline: string;
     cta: string;
+    chips: string[];
   };
   faq: {
     eyebrow: string;
