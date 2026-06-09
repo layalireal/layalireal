@@ -81,11 +81,53 @@ This monorepo keeps Dockerfiles inside `backend/` and `frontend/`.
 
 ---
 
+## Problem: Error 502 Bad Gateway (site down)
+
+Cloudflare shows **Host: Error** — the VPS container is not answering.
+
+### Fix in 2 minutes (EasyPanel)
+
+1. **Services** → open **frontend** (not backend, not database)
+2. Check status:
+   - **Red / Stopped** → click **Deploy** → wait until **Running** (green)
+   - **Building** stuck >5 min → **Stop** → **Deploy** again
+3. **Domains** tab → `layalibeauty.store` → **Proxy port = 3000** (not 80, not 8080)
+4. **Environment** → must have:
+   ```env
+   PORT=3000
+   HOSTNAME=0.0.0.0
+   ```
+5. **Settings** → Branch `main`, Build Path `/frontend`, Build method **Dockerfile**
+6. **Deploy** → open **Logs** → last line should be `Ready` or `Listening on 0.0.0.0:3000`
+
+### If logs show crash or build error
+
+| Log | Fix |
+|-----|-----|
+| `Cannot find module` / `server.js` | Build Path = `/frontend`, redeploy |
+| `EADDRINUSE` | Remove duplicate `PORT` env vars; use only `3000` |
+| Build fails on `npm ci` | Use branch `main` (latest), not old `frontend` branch |
+| Container exits immediately | Check **Logs** tab; redeploy after latest `main` push |
+
+### Fallback if still 502
+
+Switch to orphan branch (no Build Path needed):
+
+| Setting | Value |
+|---------|-------|
+| Branch | `frontend` |
+| Build Path | `/` |
+| Proxy port | **3000** |
+
+Then **Deploy** and wait 3–5 minutes.
+
+---
+
 ## Problem: Error 502 / 522 / 525 on layalibeauty.store
 
 | Error | Cause | Fix |
 |-------|-------|-----|
-| **502** | Wrong proxy port | EasyPanel domain proxy → **3000** (not 80) |
+| **502** | Container down or wrong proxy port | Steps above — port **3000**, service **Running** |
 | **522** | Origin not reachable | Frontend service not running, or wrong VPS IP in Cloudflare |
 | **525** | SSL mismatch | Cloudflare SSL mode → **Full** |
 
