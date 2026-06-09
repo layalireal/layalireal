@@ -5,7 +5,7 @@ Monorepo for Layali Beauty platform.
 ## Structure
 
 - `backend/` — Node.js + Express API (port 3000)
-- `frontend/` — React + Vite app (nginx, port 80)
+- `frontend/` — Next.js DTC storefront (COD, UAE/AED, port 3000)
 
 ## Database
 
@@ -15,16 +15,25 @@ DATABASE_URL=postgres://layalibeauty:layalibeauty@layalibeauty_database:5432/lay
 
 ## EasyPanel deploy
 
-See **[DEPLOY.md](./DEPLOY.md)** for full instructions.
+See **[DEPLOY.md](./DEPLOY.md)** for full instructions and troubleshooting.
 
 ### Quick setup (recommended)
 
-| Service  | Repo | Branch    | Proxy port |
-|----------|------|-----------|------------|
-| backend  | `layalireal/layalireal` | `backend` | `3000` |
-| frontend | `layalireal/layalireal` | `frontend` | `80` |
+| Service  | Repo | Branch | Build Path | Proxy port |
+|----------|------|--------|------------|------------|
+| frontend | `layalireal/layalireal` | `main` | `/frontend` | `3000` |
+| backend  | `layalireal/layalireal` | `main` | `/backend` | `3000` |
 
-Build method: **Dockerfile** (default path)
+Build method: **Dockerfile**
+
+After every code push to `main`, click **Deploy** in EasyPanel (frontend service).
+
+### Frontend env vars
+
+```bash
+PORT=3000
+NEXT_PUBLIC_ORDER_WEBHOOK_URL=
+```
 
 ### Backend env vars
 
@@ -33,9 +42,10 @@ DATABASE_URL=postgres://layalibeauty:layalibeauty@layalibeauty_database:5432/lay
 PORT=3000
 ```
 
-### Frontend env vars
+## Refresh deploy branches (optional)
+
+If you use the `frontend` / `backend` orphan branches instead of `main` + Build Path:
 
 ```bash
-PORT=80
-VITE_API_URL=https://your-backend-domain
+./scripts/create-deploy-branches.sh
 ```

@@ -1,57 +1,108 @@
 # EasyPanel — Layali Beauty Deploy Guide
 
+## Recommended setup (use this)
+
+| Service  | Branch | Build Path | Proxy port | Build method |
+|----------|--------|------------|------------|--------------|
+| **frontend** | `main` | `/frontend` | **3000** | Dockerfile |
+| backend  | `main` | `/backend` | 3000 | Dockerfile |
+
+The storefront is **Next.js** (not Vite). The container listens on **port 3000**.
+
+---
+
 ## Problem: `Dockerfile: no such file or directory`
 
-EasyPanel looks for `Dockerfile` at the **root of the cloned repo** by default.
+EasyPanel looks for `Dockerfile` at the **root** of the cloned repo by default.
 This monorepo keeps Dockerfiles inside `backend/` and `frontend/`.
 
-## Fix (choose ONE option)
+**Fix:** set **Build Path** to `/frontend` (frontend service) or `/backend` (backend service).
 
-### Option A — `main` branch + Build Path (most reliable)
+---
 
-| Service  | Branch | Build Path | Proxy port |
-|----------|--------|------------|------------|
-| backend  | `main` | `/backend` | `3000` |
-| frontend | `main` | `/frontend` | `80` |
+## Problem: deploy succeeds but site is old / missing new products
 
-Build method: **Dockerfile**
+1. EasyPanel → frontend → **Branch** must be `main` (not `frontend` unless you ran `./scripts/create-deploy-branches.sh` after the latest push)
+2. **Build Path** = `/frontend`
+3. Click **Deploy** again after `git push` to `main`
+4. In build logs, confirm the commit is recent (not `3e2a57b` or old Vite commits)
 
-### Option B — Deploy branches
+**Verify live:** open `/products/aroma-rose-ritual-kit` — if 404, the server is still on an old build.
+
+---
+
+## Problem: Error 502 / 522 / 525 on layalibeauty.store
+
+| Error | Cause | Fix |
+|-------|-------|-----|
+| **502** | Wrong proxy port | EasyPanel domain proxy → **3000** (not 80) |
+| **522** | Origin not reachable | Frontend service not running, or wrong VPS IP in Cloudflare |
+| **525** | SSL mismatch | Cloudflare SSL mode → **Full** |
+
+### Checklist
+
+1. **Cloudflare DNS** → A record `@` and `www` → your VPS IP (e.g. `187.124.12.89`)
+2. **Cloudflare SSL** → **Full** (EasyPanel has HTTPS on origin)
+3. Remove **Namecheap URL Forward** if enabled (conflicts with Cloudflare)
+4. **EasyPanel → frontend → Domains** → `layalibeauty.store` + `www.layalibeauty.store`, proxy port **3000**
+5. **EasyPanel → frontend** status **Running** (green)
+6. **Build Path** = `/frontend`, **Branch** = `main`
+
+---
+
+## Alternative: deploy branches
+
+Only if Build Path does not work in your EasyPanel version:
 
 | Service  | Branch    | Build Path | Proxy port |
 |----------|-----------|------------|------------|
-| backend  | `backend` | `/`        | `3000` |
-| frontend | `frontend`| `/`        | `3000` |
+| backend  | `backend` | `/`        | 3000 |
+| frontend | `frontend`| `/`        | 3000 |
 
-If you see **"Commits not found"**, use Option A or reconnect GitHub in EasyPanel Settings.
+Regenerate branches after code changes:
+
+```bash
+./scripts/create-deploy-branches.sh
+git push origin backend frontend
+```
+
+If you see **"Commits not found"**, use `main` + Build Path instead.
+
+---
 
 ## Environment variables
 
-### Backend
-```env
-DATABASE_URL=postgres://layalibeauty:layalibeauty@layalibeauty_database:5432/layalibeauty?sslmode=disable
-PORT=3000
-```
+### Frontend (required for storefront)
 
-### Frontend
 ```env
 PORT=3000
 NEXT_PUBLIC_ORDER_WEBHOOK_URL=
 ```
 
-## Cloudflare Error 522 / 525
+### Backend
 
-If you see **Error 522** or **525** on `layalibeauty.store`:
+```env
+DATABASE_URL=postgres://layalibeauty:layalibeauty@layalibeauty_database:5432/layalibeauty?sslmode=disable
+PORT=3000
+```
 
-1. **Cloudflare DNS** → A record `@` and `www` → `187.124.12.89` (your VPS IP)
-2. **Cloudflare SSL** → mode **Full** (EasyPanel has HTTPS on origin)
-3. **Remove Namecheap URL Forward** on the domain (conflicts with Cloudflare)
-4. **EasyPanel → frontend → Domains** → add `layalibeauty.store` + `www.layalibeauty.store`, proxy port **3000**
-5. **EasyPanel → frontend** must be **Running** (green) — redeploy if needed
-6. **Build Path** = `/frontend`, branch = `main`
+---
 
 ## After changing settings
 
-1. Save
+1. **Save**
 2. Click **Deploy**
-3. Check logs — `GIT_SHA` should NOT be `3e2a57b` (old README-only commit)
+3. Watch logs until `Ready` / container starts on port 3000
+4. Test: `https://layalibeauty.store` and `https://layalibeauty.store/products/aroma-rose-ritual-kit`
+
+---
+
+## Local Docker test (before EasyPanel)
+
+```bash
+cd frontend
+docker build -t layalibeauty-frontend .
+docker run -p 3000:3000 layalibeauty-frontend
+```
+
+Open http://localhost:3000
