@@ -8,7 +8,14 @@ import type { Product } from '@/types/product';
 import { getDefaultOffer, getLowestOfferPrice } from '@/types/product';
 import { useCart } from '@/lib/cart-context';
 
-export function ProductShowcaseCard({ product }: { product: Product }) {
+export function ProductShowcaseCard({
+  product,
+  imageUrl,
+}: {
+  product: Product;
+  /** Home page only — overrides product.images.heroProduct */
+  imageUrl?: string;
+}) {
   const { addOffer } = useCart();
   const defaultOffer = getDefaultOffer(product);
 
@@ -21,7 +28,7 @@ export function ProductShowcaseCard({ product }: { product: Product }) {
         <Link href={`/products/${product.slug}`} className="block overflow-hidden rounded-2xl">
           <PremiumImagePlaceholder
             label={product.imageAlts.heroProduct}
-            imageUrl={product.images.heroProduct}
+            imageUrl={imageUrl ?? product.images.heroProduct}
             alt={product.imageAlts.heroProduct}
             className="transition-transform duration-500 group-hover:scale-[1.02]"
           />

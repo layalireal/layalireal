@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { PremiumImagePlaceholder } from '@/components/ui/PremiumImagePlaceholder';
 import { Icon } from '@/components/ui/Icon';
 import { TrustBadges } from '@/components/home/TrustBadges';
+import { homeImages } from '@/config/homeImages';
 import type { SiteMarketing } from '@/types/marketing';
 import { businessConfig } from '@/config/business';
 
@@ -52,8 +53,8 @@ export function HomeHero({ marketing }: { marketing: SiteMarketing }) {
               <PremiumImagePlaceholder
                 aspect="square"
                 label={`${brand.nameLocal} — ${brand.tagline}`}
-                imageUrl={brand.logoUrl}
-                alt={brand.nameLocal}
+                imageUrl={homeImages.hero}
+                alt="ليالي للجمال — طقوس أروما فاخرة للبيت والعناية"
                 className="h-full rounded-none border-0 shadow-none"
               />
             </div>
