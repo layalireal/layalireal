@@ -16,7 +16,12 @@ function parseIngredient(item: string | IngredientItem) {
 
 export function generateProductPageMarketing(product: Product): ProductPageMarketing {
   const { brand, market, cod } = businessConfig;
-  const formatLabel = product.format === 'serum' ? 'سيروم' : 'بخاخ';
+  const formatLabel =
+    product.format === 'serum'
+      ? 'سيروم'
+      : product.format === 'aroma-lamp-kit'
+        ? 'روتين أروما'
+        : 'بخاخ';
 
   const painCards = [
     {
@@ -37,7 +42,28 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
   ];
 
   const failureAlternatives =
-    product.category === 'home-fragrance'
+    product.category === 'skin-hydration' || product.format === 'aroma-lamp-kit'
+      ? [
+          {
+            id: 'alt-1',
+            name: 'كريمات ترطيب عادية',
+            priceRange: '٨٠ – ٢٠٠ د.إ',
+            reasons: ['ترطيب سطحي بس', 'ما تعالج أجواء البيت', 'تحتاج تعيد كل يوم', 'ما فيها أروما'],
+          },
+          {
+            id: 'alt-2',
+            name: 'زيوت ورد رخيصة',
+            priceRange: '٣٠ – ٨٠ د.إ',
+            reasons: ['fragrance oil مو essential', 'ما فيها سيروم', 'بدون مصباح أروما', 'جودة غير مضمونة'],
+          },
+          {
+            id: 'alt-3',
+            name: 'مصابيح أروما بدون زيت',
+            priceRange: '١٥٠ – ٣٠٠ د.إ',
+            reasons: ['تحتاج تشتري الزيت لوحدك', 'ما فيها عناية بالبشرة', 'تكلفة إضافية', 'مو باقة كاملة'],
+          },
+        ]
+      : product.category === 'home-fragrance'
       ? [
           {
             id: 'alt-1',

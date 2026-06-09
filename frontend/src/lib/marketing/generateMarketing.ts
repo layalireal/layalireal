@@ -28,6 +28,8 @@ function formatCategoryLabel(category: string): string {
     'eye-care': 'العناية بالعين',
     'anti-aging': 'مكافحة الشيخوخة',
     'skin-brightening': 'إشراقة البشرة',
+    'skin-hydration': 'ترطيب البشرة',
+    'home-fragrance': 'عطور منزلية',
   };
   return map[category] ?? category;
 }
@@ -39,6 +41,7 @@ function getFormatLabel(format: string): string {
     cream: 'كريم',
     'diffuser-spray': 'بخاخ',
     'personal-fragrance': 'عطر',
+    'aroma-lamp-kit': 'روتين أروما',
   };
   return map[format] ?? format;
 }
