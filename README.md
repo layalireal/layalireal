@@ -26,7 +26,9 @@ See **[DEPLOY.md](./DEPLOY.md)** for full instructions and troubleshooting.
 If Build Path is missing: branch `main`, path `/` (root `Dockerfile`), or branch `frontend`, path `/`.
 | backend  | `layalireal/layalireal` | `main` | `/backend` | `3000` |
 
-Build method: **Dockerfile**
+Build method: **Dockerfile** (not Nixpacks)
+
+Runtime env only: `PORT=3000`, `HOSTNAME=0.0.0.0` — do not set `NODE_ENV=production` during build.
 
 After every code push to `main`, click **Deploy** in EasyPanel (frontend service).
 

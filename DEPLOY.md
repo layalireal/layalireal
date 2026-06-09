@@ -41,6 +41,9 @@ Then EasyPanel → **Deploy** (or enable **Auto Deploy** on push).
 |-------------|-----|
 | `Dockerfile: no such file` | Build Path = `/frontend` OR branch `frontend` with path `/` |
 | `npm ci` / lockfile error | Use branch `main` (latest), redeploy |
+| `Cannot find module 'typescript'` / `tailwindcss` | Remove `NODE_ENV=production` from **Build** env in EasyPanel (only set at runtime). Dockerfile now uses `npm ci --include=dev` |
+| `Killed` / build stops at 50–90% | VPS out of RAM — upgrade to 2GB+ or retry deploy at night |
+| `standalone/server.js` not found | Build failed silently — check full build log above |
 | `EADDRINUSE` / health fail | Env `PORT=3000`, proxy port **3000** |
 | `Commits not found` | Branch `main` + Build Path `/frontend` (not `frontend` branch) |
 
@@ -52,12 +55,16 @@ Old container still running. **Stop** → **Deploy** → wait for `Ready`. Test:
 
 ## Recommended setup (use this)
 
-| Service  | Branch | Build Path | Proxy port | Build method |
-|----------|--------|------------|------------|--------------|
-| **frontend** | `main` | `/frontend` | **3000** | Dockerfile |
-| backend  | `main` | `/backend` | 3000 | Dockerfile |
+| Service  | Branch | Build Path | Dockerfile path | Proxy port | Build method |
+|----------|--------|------------|-----------------|------------|--------------|
+| **frontend** | `main` | `/frontend` | `Dockerfile` | **3000** | Dockerfile |
+| **frontend (alt)** | `main` | `/` | `Dockerfile` | **3000** | Dockerfile |
+| **frontend (alt 2)** | `frontend` | `/` | `Dockerfile` | **3000** | Dockerfile |
+| backend  | `main` | `/backend` | `Dockerfile` | 3000 | Dockerfile |
 
 The storefront is **Next.js** (not Vite). The container listens on **port 3000**.
+
+**Important:** In EasyPanel → Environment, set `PORT=3000` and `HOSTNAME=0.0.0.0` for **runtime only**. Do **not** set `NODE_ENV=production` in build settings — it breaks `npm ci` on small VPS builds.
 
 ---
 

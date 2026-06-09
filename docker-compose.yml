@@ -1,0 +1,14 @@
+# EasyPanel: import this compose OR use App service with Dockerfile.
+# Proxy port in EasyPanel Domains must be 3000.
+services:
+  layalibeauty-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      PORT: '3000'
+      HOSTNAME: '0.0.0.0'
+      NODE_ENV: production
+    restart: unless-stopped
