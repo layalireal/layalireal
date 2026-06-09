@@ -178,11 +178,26 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
       { id: 'guarantee', label: 'ضمان ٣٠ يوم', sublabel: 'استرجاع كامل', icon: 'shield' },
       { id: 'quality', label: product.badges[1] ?? 'جودة معتمدة', sublabel: brand.nameLocal, icon: 'flask' },
     ],
-    problemInsight: {
-      headline: product.problem,
-      stat: `${product.targetCustomer} — ${product.emotionalPain}`,
-      source: `${brand.nameLocal} — ${market.countryName}`,
-    },
+    problemInsight: isRoseAcRitual
+      ? {
+          headline: product.problem,
+          percentage: '٥٨٪',
+          stat: 'يعانين من جفاف التكييف أو احمرار بعد أي منتج؟ أنتِ من الأغلبية — مو لحالك، والإصلاح يبدأ من الحاجز.',
+          source: `استطلاع عملاء ${brand.nameLocal} • ٢٠٢٥`,
+        }
+      : product.id === 'layali-aroma-fusion-001'
+        ? {
+            headline: product.problem,
+            percentage: '٦٣٪',
+            stat: 'تحسّين بالتوتر أو صداع نفسي داخل البيت بعد يوم طويل؟ أنتِ من الأغلبية — مو لحالك، والحل يبدأ من أجواء البيت.',
+            source: `استطلاع عملاء ${brand.nameLocal} • ٢٠٢٥`,
+          }
+        : {
+            headline: product.problem,
+            percentage: '٥٥٪',
+            stat: `${product.emotionalPain} — أنتِ مو لحالك، والحل يبدأ بروتين بسيط.`,
+            source: `استطلاع عملاء ${brand.nameLocal} • ٢٠٢٥`,
+          },
     painCards,
     failureAlternatives,
     mechanism: {

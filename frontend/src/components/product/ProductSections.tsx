@@ -31,18 +31,22 @@ export function ProductTrustStrip({ items }: { items: ProductPageMarketing['trus
 }
 
 export function ProblemInsightSection({ product, marketing }: { product: Product; marketing: ProductPageMarketing }) {
+  const { problemInsight } = marketing;
+
   return (
     <section className="px-4 py-10">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-brand-border bg-white shadow-luxury">
         <PremiumImagePlaceholder
           label={product.imageAlts.problemImage}
           imageUrl={product.images.problemImage}
-          aspect="product"
+          aspect={product.images.problemImage ? 'natural' : 'product'}
           objectFit="contain"
+          className="rounded-none border-0 shadow-none"
         />
-        <div className="mt-4 rounded-2xl bg-brand-primary p-4 text-white">
-          <p className="text-sm leading-7">{marketing.problemInsight.stat}</p>
-          <p className="mt-2 text-xs text-white/60">{marketing.problemInsight.source}</p>
+        <div className="bg-brand-primary px-6 py-8 text-center text-white sm:px-10 sm:py-10">
+          <p className="text-5xl font-extrabold leading-none tracking-tight sm:text-6xl">{problemInsight.percentage}</p>
+          <p className="mx-auto mt-5 max-w-xl text-sm font-medium leading-8 sm:text-base">{problemInsight.stat}</p>
+          <p className="mt-5 text-xs text-white/55 sm:text-sm">{problemInsight.source}</p>
         </div>
       </div>
     </section>
