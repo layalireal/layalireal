@@ -399,26 +399,6 @@ export function ProductFAQ({ marketing }: { marketing: ProductPageMarketing }) {
   );
 }
 
-export function ProductHomeCardImage({ product }: { product: Product }) {
-  const imageUrl = getHomeProductCardImage(product.id);
-  if (!imageUrl) return null;
-
-  return (
-    <section className="px-4 py-10">
-      <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-brand-border bg-white shadow-luxury">
-        <PremiumImagePlaceholder
-          label={product.imageAlts.heroProduct}
-          imageUrl={imageUrl}
-          alt={product.imageAlts.heroProduct}
-          aspect="square"
-          objectFit="contain"
-          className="rounded-none border-0 shadow-none"
-        />
-      </div>
-    </section>
-  );
-}
-
 export function RelatedProducts({ current, related }: { current: Product; related: Product[] }) {
   if (related.length === 0) return null;
   return (
@@ -426,14 +406,30 @@ export function RelatedProducts({ current, related }: { current: Product; relate
       <div className="mx-auto max-w-6xl">
         <SectionHeading title="منتجات قد تعجبك" />
         <div className="grid gap-4 md:grid-cols-2">
-          {related.map((p) => (
-            <Link key={p.id} href={`/products/${p.slug}`} className="rounded-3xl border border-brand-border bg-brand-card p-5 shadow-luxury">
-              <PremiumImagePlaceholder label={p.shortName} aspect="square" className="mb-4" />
-              <h3 className="font-bold">{p.name}</h3>
-              <p className="mt-2 text-sm text-brand-muted">{p.cardSubheadline}</p>
-              <p className="mt-3 font-bold text-brand-primary">{formatPriceFrom(getLowestOfferPrice(p))}</p>
-            </Link>
-          ))}
+          {related.map((p) => {
+            const imageUrl = getHomeProductCardImage(p.id) ?? p.images.heroProduct;
+            return (
+              <Link
+                key={p.id}
+                href={`/products/${p.slug}`}
+                className="overflow-hidden rounded-3xl border border-brand-border bg-brand-card shadow-luxury transition-shadow hover:shadow-luxury"
+              >
+                <PremiumImagePlaceholder
+                  label={p.imageAlts.heroProduct}
+                  imageUrl={imageUrl}
+                  alt={p.imageAlts.heroProduct}
+                  aspect={imageUrl ? 'square' : 'product'}
+                  objectFit={imageUrl ? 'contain' : 'cover'}
+                  className="rounded-none border-0 shadow-none"
+                />
+                <div className="p-5">
+                  <h3 className="font-bold">{p.name}</h3>
+                  <p className="mt-2 text-sm text-brand-muted">{p.cardSubheadline}</p>
+                  <p className="mt-3 font-bold text-brand-primary">{formatPriceFrom(getLowestOfferPrice(p))}</p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
