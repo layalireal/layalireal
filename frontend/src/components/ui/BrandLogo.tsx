@@ -16,12 +16,17 @@ export function BrandLogo({
 }) {
   const { brand } = businessConfig;
   const { frame, zoom } = markSizes[size];
-  const titleClass = variant === 'dark' ? 'text-white' : 'text-brand-text';
+  const titleClass = variant === 'dark' ? 'text-white' : 'text-brand-primary';
+  const englishClass = variant === 'dark' ? 'text-brand-secondary' : 'text-brand-primary';
   const nameClass = size === 'lg' ? 'text-base sm:text-lg' : 'text-sm sm:text-base';
   const subClass =
     size === 'lg'
       ? 'text-[10px] sm:text-[11px] sm:tracking-[0.2em]'
       : 'text-[9px] sm:text-[10px] sm:tracking-[0.18em]';
+  const logoFilter =
+    variant === 'light'
+      ? 'url(#layali-logo-knockout) brightness(0) saturate(100%) invert(27%) sepia(35%) saturate(1500%) hue-rotate(115deg) brightness(0.95) contrast(1.05)'
+      : 'url(#layali-logo-knockout)';
 
   return (
     <Link href="/" className="group flex shrink-0 items-center gap-2.5 sm:gap-3">
@@ -29,7 +34,7 @@ export function BrandLogo({
         <div
           className={`shrink-0 bg-transparent ${frame} transition-transform group-hover:scale-[1.03]`}
           style={{
-            filter: 'url(#layali-logo-knockout)',
+            filter: logoFilter,
             backgroundImage: `url(${brand.logoUrl})`,
             backgroundSize: `${zoom} auto`,
             backgroundPosition: 'center center',
@@ -47,7 +52,7 @@ export function BrandLogo({
       )}
       <div className="block leading-tight">
         <p className={`font-extrabold tracking-tight ${nameClass} ${titleClass}`}>{brand.nameLocal}</p>
-        <p className={`font-latin font-bold uppercase tracking-[0.16em] text-brand-secondary ${subClass}`}>
+        <p className={`font-latin font-bold uppercase tracking-[0.16em] ${englishClass} ${subClass}`}>
           {brand.nameEnglish}
         </p>
       </div>
