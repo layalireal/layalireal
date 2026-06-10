@@ -25,18 +25,16 @@ export function BrandLogo({
   return (
     <Link href="/" className="group flex shrink-0 items-center gap-3">
       {brand.logoUrl ? (
-        <div
-          className={`${iconClass} shrink-0 overflow-hidden rounded-xl bg-brand-background shadow-sm ring-1 ring-brand-border transition-transform group-hover:scale-105`}
-        >
-          <Image
-            src={brand.logoUrl}
-            alt={brand.nameLocal}
-            width={iconPx}
-            height={iconPx}
-            className="h-full w-full scale-[1.65] object-cover"
-            priority={size === 'lg'}
-          />
-        </div>
+        <Image
+          src={brand.logoUrl}
+          alt={brand.nameLocal}
+          width={iconPx}
+          height={iconPx}
+          className={`${iconClass} shrink-0 object-contain transition-transform group-hover:scale-105 ${
+            variant === 'dark' ? 'mix-blend-lighten' : 'mix-blend-screen'
+          }`}
+          priority={size === 'lg'}
+        />
       ) : (
         <div
           className={`${iconClass} flex items-center justify-center rounded-full bg-brand-primary text-brand-secondary shadow-primary ring-2 ring-brand-secondary/30`}
