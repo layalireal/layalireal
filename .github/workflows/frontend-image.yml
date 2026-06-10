@@ -12,6 +12,7 @@ on:
 permissions:
   contents: read
   packages: write
+  id-token: write
 
 jobs:
   build-and-push:
@@ -35,3 +36,14 @@ jobs:
           tags: |
             ghcr.io/layalireal/layalireal-frontend:latest
             ghcr.io/layalireal/layalireal-frontend:${{ github.sha }}
+
+      - name: Try to set GHCR package public (EasyPanel pull without login)
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for pkg in layalireal-frontend layalireal/layalireal-frontend; do
+            gh api --method PATCH "/orgs/layalireal/packages/container/${pkg}" -f visibility=public && exit 0
+            gh api --method PATCH "/users/layalireal/packages/container/${pkg}" -f visibility=public && exit 0
+          done
+          echo "::warning::Could not set package public automatically. Make it public manually: GitHub → Packages → layalireal-frontend → Package settings → Public"
