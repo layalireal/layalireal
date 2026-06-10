@@ -53,6 +53,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${ibmArabic.variable} ${inter.variable} ${playfair.variable}`}
     >
       <body className="flex min-h-screen flex-col" style={themeVars as React.CSSProperties}>
+        <svg aria-hidden className="absolute h-0 w-0 overflow-hidden" focusable="false">
+          <defs>
+            <filter id="layali-logo-knockout" colorInterpolationFilters="sRGB">
+              <feColorMatrix
+                type="matrix"
+                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  1 1 1 0 -1"
+              />
+            </filter>
+          </defs>
+        </svg>
         <CartProvider>
           <SiteHeader />
           <main className="flex-1">{children}</main>

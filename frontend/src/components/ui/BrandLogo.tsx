@@ -22,27 +22,22 @@ export function BrandLogo({
     size === 'lg'
       ? 'text-[10px] sm:text-[11px] sm:tracking-[0.2em]'
       : 'text-[9px] sm:text-[10px] sm:tracking-[0.18em]';
-  const markBg = variant === 'dark' ? 'bg-brand-primary-dark' : 'bg-brand-primary';
-  const ringClass = variant === 'dark' ? 'ring-brand-secondary/20' : 'ring-brand-secondary/30';
 
   return (
     <Link href="/" className="group flex shrink-0 items-center gap-2.5 sm:gap-3">
       {brand.logoUrl ? (
         <div
-          className={`relative shrink-0 overflow-hidden rounded-full ${markBg} ring-1 ${ringClass} ${frame} transition-transform group-hover:scale-[1.03]`}
+          className={`shrink-0 bg-transparent ${frame} transition-transform group-hover:scale-[1.03]`}
+          style={{
+            filter: 'url(#layali-logo-knockout)',
+            backgroundImage: `url(${brand.logoUrl})`,
+            backgroundSize: `${zoom} auto`,
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+          }}
           role="img"
           aria-label={brand.nameLocal}
-        >
-          <div
-            className="absolute inset-0 mix-blend-screen"
-            style={{
-              backgroundImage: `url(${brand.logoUrl})`,
-              backgroundSize: `${zoom} auto`,
-              backgroundPosition: 'center center',
-              backgroundRepeat: 'no-repeat',
-            }}
-          />
-        </div>
+        />
       ) : (
         <div
           className={`flex items-center justify-center rounded-full bg-brand-primary text-brand-secondary ring-2 ring-brand-secondary/30 ${frame}`}
