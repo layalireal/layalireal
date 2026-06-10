@@ -101,9 +101,9 @@ export const products: Product[] = [
     },
     images: {
       heroBeforeAfter: '',
-      heroProduct: '',
-      problemImage: '',
-      ingredientImage: '',
+      heroProduct: publicAsset('products/oud/ChatGPT Image Jun 10, 2026, 12_59_15 AM.png'),
+      problemImage: publicAsset('products/oud/problem.webp'),
+      ingredientImage: publicAsset('products/oud/ChatGPT Image Jun 9, 2026, 11_17_06 PM.png'),
       authorityImage: '',
       lifestyleImage: '',
       testimonialImage: '',
