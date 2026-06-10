@@ -7,7 +7,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/products/oud-dubai-serum',
-        destination: '/products/aroma-oud-ritual-kit',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/products/aroma-oud-ritual-kit',
+        destination: '/',
         permanent: true,
       },
     ];
