@@ -1,6 +1,6 @@
 import { publicAsset } from '@/lib/publicAsset';
 
-const brandLogo = publicAsset('ChatGPT Image Jun 10, 2026, 02_00_08 AM.png');
+const brandLogo = publicAsset('ChatGPT Image Jun 10, 2026, 02_17_51 AM.png');
 
 export const businessConfig = {
   brand: {
