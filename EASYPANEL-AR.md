@@ -69,9 +69,31 @@ HOSTNAME=0.0.0.0
 
 > أول مرة: سير لـ GitHub → Actions → شوف workflow **Build frontend Docker image** خاصو يكون أخضر (بعد push لـ main).
 
-### إلا الصورة private
+### إلا الصورة private (Deploy كيفشل بـ unauthorized)
 
-GitHub → Packages → layalireal-frontend → Package settings → Change visibility to **Public**
+**الحل 1 — خليها Public (الأحسن):**
+
+1. https://github.com/orgs/layalireal/packages
+2. **layalireal-frontend** → Package settings → **Public**
+
+**الحل 2 — Registry credentials فـ EasyPanel:**
+
+| الحقل | القيمة |
+|-------|--------|
+| Registry | `ghcr.io` |
+| Username | `layalireal` |
+| Password | GitHub token بصلاحية `read:packages` |
+
+---
+
+## Deploy ما كيخدمش / زر رمادي
+
+1. **Stop** الخدمة
+2. استنى **30 ثانية**
+3. **Deploy** من جديد
+4. Domains → port **3000**
+
+إلا باقي: احذف خدمة frontend وأنشئها من جديد بنفس الإعدادات (Docker Image).
 
 ---
 
