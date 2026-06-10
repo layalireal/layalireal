@@ -128,7 +128,7 @@ export function MechanismSection({ marketing }: { marketing: ProductPageMarketin
 export function ExclusionsSection({ marketing }: { marketing: ProductPageMarketing }) {
   return (
     <section className="px-4 py-10">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-4xl space-y-8">
         <SectionHeading title={marketing.exclusions.headline} />
         <div className="grid gap-3 sm:grid-cols-2">
           {marketing.exclusions.items.map((item) => (
@@ -146,14 +146,13 @@ export function ExclusionsSection({ marketing }: { marketing: ProductPageMarketi
 export function IngredientBreakdown({ product, marketing }: { product: Product; marketing: ProductPageMarketing }) {
   return (
     <section className="bg-brand-background px-4 py-10">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-4xl space-y-8">
         <SectionHeading title={marketing.ingredients.headline} />
         <PremiumImagePlaceholder
           label={product.imageAlts.ingredientImage}
           imageUrl={product.images.ingredientImage}
           aspect="square"
           objectFit="contain"
-          className="mb-6"
         />
         <div className="space-y-4">
           {marketing.ingredients.items.map((ing) => (
