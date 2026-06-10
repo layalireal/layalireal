@@ -24,7 +24,6 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
         : 'بخاخ';
 
   const isRoseAcRitual = product.id === 'layali-aroma-rose-kit-001';
-  const isOudAcRitual = product.id === 'layali-aroma-oud-kit-001';
 
   const painCards = isRoseAcRitual
     ? [
@@ -44,25 +43,7 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
           solution: `٢٠ دقيقة ورد: مصباح أروما لريحة سبا فاخرة + سيروم الورد لبشرة ناعمة — روتين واحد.`,
         },
       ]
-    : isOudAcRitual
-      ? [
-          {
-            id: 'pain-1',
-            pain: product.emotionalPain,
-            solution: `${product.shortName} روتين مسائي يثبت العود على النبض ويملأ البيت برائحة فاخرة.`,
-          },
-          {
-            id: 'pain-2',
-            pain: 'ريحتك تختفي قبل الظهر مع التكييف والحر؟',
-            solution: product.mechanism,
-          },
-          {
-            id: 'pain-3',
-            pain: 'بغيتي عود يدوم من الشغل للمجلس — مو بخاخ يتبخر بسرعة؟',
-            solution: `٢٠ دقيقة عود: سيروم على النبض + مصباح أروما — روتين واحد.`,
-          },
-        ]
-      : [
+    : [
           {
             id: 'pain-1',
             pain: product.emotionalPain,
@@ -85,21 +66,17 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
       ? [
           {
             id: 'alt-1',
-            name: isRoseAcRitual ? 'كريمات ترطيب بعد التكييف' : isOudAcRitual ? 'بخاخات عطر رخيصة' : 'كريمات ترطيب عادية',
-            priceRange: isOudAcRitual ? '٥٠ – ١٢٠ د.إ' : '٨٠ – ٢٠٠ د.إ',
+            name: isRoseAcRitual ? 'كريمات ترطيب بعد التكييف' : 'كريمات ترطيب عادية',
+            priceRange: '٨٠ – ٢٠٠ د.إ',
             reasons: isRoseAcRitual
               ? ['ما تعالجون سبب الجفاف: التكييف', 'ترطيب سطحي بس', 'ما فيها روتين مسائي', 'ما فيها أروما للبيت']
-              : isOudAcRitual
-                ? ['تختفي قبل الظهر', 'ما تثبت مع التكييف', 'ما فيها سيروم نبض', 'ما فيها أروما للبيت']
-                : ['ترطيب سطحي بس', 'ما تعالج أجواء البيت', 'تحتاج تعيد كل يوم', 'ما فيها أروما'],
+              : ['ترطيب سطحي بس', 'ما تعالج أجواء البيت', 'تحتاج تعيد كل يوم', 'ما فيها أروما'],
           },
           {
             id: 'alt-2',
-            name: isOudAcRitual ? 'عطور فاخرة بسعر عالي' : 'زيوت ورد رخيصة',
-            priceRange: isOudAcRitual ? '٥٠٠ – ١,٥٠٠ د.إ' : '٣٠ – ٨٠ د.إ',
-            reasons: isOudAcRitual
-              ? ['سعر مبالغ فيه', 'ما تثبت مع الحر', 'ما فيها مصباح أروما', 'مو باقة كاملة']
-              : ['زيت عطري مو زيت أساسي', 'ما فيها سيروم', 'بدون مصباح أروما', 'جودة غير مضمونة'],
+            name: 'زيوت ورد رخيصة',
+            priceRange: '٣٠ – ٨٠ د.إ',
+            reasons: ['زيت عطري مو زيت أساسي', 'ما فيها سيروم', 'بدون مصباح أروما', 'جودة غير مضمونة'],
           },
           {
             id: 'alt-3',
@@ -183,22 +160,11 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
       }
     : null;
 
-  const oudFaqAc = isOudAcRitual
-    ? {
-        id: 'faq-oud-ac',
-        question: 'هل ينفع مع التكييف والحر في الإمارات؟',
-        answer:
-          'إيه، طقوس العود صُمّمت لهاد الجو: سيروم عود دبي على النبض يدوم أطول، ومصباح الأروما يعطي بيتك رائحة عود فاخرة مساءً. روتين ٢٠ دقيقة.',
-      }
-    : null;
-
   return {
     announcement: isRoseAcRitual
       ? `روتين ما بعد التكييف — ${cod.paymentLabel}`
-      : isOudAcRitual
-        ? `عود يدوم — من الشغل للمجلس • ${cod.paymentLabel}`
-        : `${cod.paymentLabel} • ${cod.deliveryPromise}`,
-    scarcity: isRoseAcRitual || isOudAcRitual
+      : `${cod.paymentLabel} • ${cod.deliveryPromise}`,
+    scarcity: isRoseAcRitual
       ? `روتين مسائي ٢٠ دقيقة — ${product.reviewsCount}+ عميل في الإمارات • ${product.rating} نجوم`
       : `عرض محدود هذا الأسبوع — ${product.reviewsCount}+ تقييم • ${product.rating} نجوم`,
     painHeadline: product.heroHeadline,
@@ -219,14 +185,7 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
           stat: 'يعانين من جفاف التكييف أو احمرار بعد أي منتج؟ أنتِ من الأغلبية — مو لحالك، والإصلاح يبدأ من الحاجز.',
           source: `استطلاع عملاء ${brand.nameLocal} • ٢٠٢٥`,
         }
-      : isOudAcRitual
-        ? {
-            headline: product.problem,
-            percentage: '٦١٪',
-            stat: 'ريحتك تختفي قبل الظهر مع التكييف والحر؟ أنتِ من الأغلبية — مو لحالك، والحل يبدأ من طقوس عود مركّزة تدوم.',
-            source: `استطلاع عملاء ${brand.nameLocal} • ٢٠٢٥`,
-          }
-        : product.id === 'layali-aroma-fusion-001'
+      : product.id === 'layali-aroma-fusion-001'
           ? {
               headline: product.problem,
               percentage: '٦٣٪',
@@ -274,14 +233,7 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
             'قبل الضيافة كنشعل المصباح — ريحة ورد فاخرة والبشرة مرطّبة. هاد الروتين ولى جزء من يومي.',
           ][i] ??
           `بعد ما عانيت من ${product.problem}، ${product.shortName} ساعدني أحس بـ${product.desiredOutcome}.`
-        : isOudAcRitual
-          ? [
-              'ريحتي كانت تختفي قبل الظهر. طقوس العود غيّرت الموضوع — سيروم على النبض + مصباح، من الشغل للمجلس.',
-              'جربت بخاخات رخيصة وما نفعت مع التكييف. باقة طقوس العود الكاملة أعطتني ثبات أطول.',
-              'قبل الضيافة كنشعل المصباح — ريحة عود فاخرة والبيت يبان مجلس. هاد الروتين ولى جزء من يومي.',
-            ][i] ??
-            `بعد ما عانيت من ${product.problem}، ${product.shortName} ساعدني أحس بـ${product.desiredOutcome}.`
-          : `بعد ما عانيت من ${product.problem}، ${product.shortName} ساعدني أحس بـ${product.desiredOutcome}. الحين ما أستغني عنه.`,
+        : `بعد ما عانيت من ${product.problem}، ${product.shortName} ساعدني أحس بـ${product.desiredOutcome}. الحين ما أستغني عنه.`,
       name,
       meta: `${['٣٤', '٢٩', '٤١'][i]} سنة • ${uaeCities[i]} • مشترية مؤكدة`,
       initial: name.charAt(0),
@@ -301,9 +253,7 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
     offerRecap: {
       headline: isRoseAcRitual
         ? 'باقة ما بعد التكييف — عرض خاص'
-        : isOudAcRitual
-          ? 'باقة طقوس العود — عرض خاص'
-          : `باقة ${product.shortName} — عرض خاص`,
+        : `باقة ${product.shortName} — عرض خاص`,
       benefits: isRoseAcRitual
         ? [
             cod.paymentLabel,
@@ -311,14 +261,7 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
             'روتين مسائي ٢٠ دقيقة — مصمم لجو الإمارات',
             cod.returnGuarantee,
           ]
-        : isOudAcRitual
-          ? [
-              cod.paymentLabel,
-              'مصباح أروما + زيت عود 30ml + سيروم عود دبي',
-              'روتين مسائي ٢٠ دقيقة — من الشغل للمجلس',
-              cod.returnGuarantee,
-            ]
-          : [cod.paymentLabel, cod.deliveryPromise, cod.returnGuarantee, product.mechanism.slice(0, 80)],
+        : [cod.paymentLabel, cod.deliveryPromise, cod.returnGuarantee, product.mechanism.slice(0, 80)],
     },
     guarantee: {
       headline: cod.returnGuarantee,
@@ -352,12 +295,9 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
           question: 'متى بألاحظ النتيجة؟',
           answer: isRoseAcRitual
             ? 'من أول مساء كثير عميلات يحسّون ببشرة أقل شدّاً. مع روتين ٢٠ دقيقة يومياً، الترطيب يتحسّن تدريجياً خلال أسابيع — خاصة إذا كنتِ قضيتِ يوم طويل فالتكييف.'
-            : isOudAcRitual
-              ? 'من أول مساء كثير عملاء يلاحظون ثبات أطول. مع روتين ٢٠ دقيقة يومياً، العود يثبت أطول حتى مع التكييف والحر.'
-              : `مع الاستخدام المنتظم، بعض العميلات يلاحظون فرق خلال أسابيع. النتيجة تختلف حسب ${product.problem}.`,
+            : `مع الاستخدام المنتظم، بعض العميلات يلاحظون فرق خلال أسابيع. النتيجة تختلف حسب ${product.problem}.`,
         },
         ...(roseFaqAc ? [roseFaqAc] : []),
-        ...(oudFaqAc ? [oudFaqAc] : []),
         {
           id: 'faq-safe',
           question: `هل ${product.shortName} آمن للاستخدام اليومي؟`,
@@ -386,9 +326,7 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
       headline: product.usage?.headline ?? `طريقة استخدام ${formatLabel}`,
       subheadline: isRoseAcRitual
         ? 'روتين مسائي ٢٠ دقيقة — بعد يوم فالتكييف'
-        : isOudAcRitual
-          ? 'روتين مسائي ٢٠ دقيقة — عود يدوم من الشغل للمجلس'
-          : 'روتين بسيط — ٣٠ ثانية باليوم',
+        : 'روتين بسيط — ٣٠ ثانية باليوم',
       steps: usageSteps.map((body, i) => ({
         title: ['الخطوة ١', 'الخطوة ٢', 'الخطوة ٣'][i] ?? `خطوة ${i + 1}`,
         body,
