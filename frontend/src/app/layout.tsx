@@ -37,6 +37,10 @@ const themeVars = getThemeCssVariables();
 export const metadata: Metadata = {
   title: `${businessConfig.brand.nameLocal} | ${businessConfig.brand.nameEnglish}`,
   description: businessConfig.brand.description,
+  icons: {
+    icon: businessConfig.brand.iconUrl,
+    apple: businessConfig.brand.iconUrl,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
