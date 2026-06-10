@@ -12,9 +12,10 @@ export function BrandLogo({ variant = 'light' }: { variant?: 'light' | 'dark' })
         <Image
           src={brand.logoUrl}
           alt={brand.nameLocal}
-          width={44}
-          height={44}
-          className="h-11 w-11 object-contain drop-shadow-sm transition-transform group-hover:scale-105"
+          width={48}
+          height={48}
+          className="h-12 w-12 rounded-xl object-contain shadow-sm ring-1 ring-brand-border transition-transform group-hover:scale-105"
+          priority
         />
       ) : (
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-primary text-brand-secondary shadow-primary ring-2 ring-brand-secondary/30">
