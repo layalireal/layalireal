@@ -6,6 +6,7 @@ import { PremiumImagePlaceholder } from '@/components/ui/PremiumImagePlaceholder
 import { TestimonialCard } from '@/components/home/TestimonialCard';
 import { formatPrice, formatPriceFrom } from '@/lib/theme';
 import { businessConfig } from '@/config/business';
+import { getHomeProductCardImage } from '@/config/homeImages';
 import type { Product, ProductOffer } from '@/types/product';
 import { getLowestOfferPrice } from '@/types/product';
 import { SectionHeading } from '@/components/ui/SectionHeading';
@@ -393,6 +394,26 @@ export function ProductFAQ({ marketing }: { marketing: ProductPageMarketing }) {
             </details>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+export function ProductHomeCardImage({ product }: { product: Product }) {
+  const imageUrl = getHomeProductCardImage(product.id);
+  if (!imageUrl) return null;
+
+  return (
+    <section className="px-4 py-10">
+      <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-brand-border bg-white shadow-luxury">
+        <PremiumImagePlaceholder
+          label={product.imageAlts.heroProduct}
+          imageUrl={imageUrl}
+          alt={product.imageAlts.heroProduct}
+          aspect="square"
+          objectFit="contain"
+          className="rounded-none border-0 shadow-none"
+        />
       </div>
     </section>
   );
