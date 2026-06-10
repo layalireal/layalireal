@@ -25,7 +25,6 @@ import {
   CODDeliverySection,
   DeliveryCitiesSection,
   ProductFAQ,
-  ProductHomeCardImage,
   RelatedProducts,
 } from '@/components/product/ProductSections';
 import { formatPrice, formatPriceFrom } from '@/lib/theme';
@@ -127,7 +126,6 @@ export function ProductLandingPage({ product, marketing, related }: Props) {
       <DeliveryCitiesSection marketing={marketing} />
       <ProductFAQ marketing={marketing} />
       <RelatedProducts current={product} related={related} />
-      <ProductHomeCardImage product={product} />
 
       <ProductStickyCTA label={marketing.stickyCtaTemplate} price={selectedOffer.price} onClick={handleCta} />
     </div>
