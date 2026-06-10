@@ -1,15 +1,11 @@
-import { publicAsset } from '@/lib/publicAsset';
-
-const brandLogo = publicAsset('ChatGPT Image Jun 10, 2026, 02_17_51 AM.png');
-
 export const businessConfig = {
   brand: {
     nameLocal: 'ليالي للجمال',
     nameEnglish: 'LAYALI BEAUTY',
     tagline: 'صيدلية الجمال الإماراتية',
     description: 'عطور وأروما فاخرة من دبي. تركيبات مدروسة لبيت أهدأ وبشرة أنعم.',
-    logoUrl: brandLogo,
-    iconUrl: brandLogo,
+    logoUrl: '/logo.svg',
+    iconUrl: '/logo.svg',
   },
   market: {
     countryName: 'الإمارات العربية المتحدة',
