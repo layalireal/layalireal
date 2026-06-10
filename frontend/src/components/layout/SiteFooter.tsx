@@ -11,7 +11,7 @@ export function SiteFooter({ marketing }: { marketing: SiteMarketing }) {
       <div className="section-shell py-14">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-xl space-y-4">
-            <BrandLogo variant="dark" />
+            <BrandLogo variant="dark" size="md" />
             <p className="text-sm leading-7 text-white/70">{marketing.footer.description}</p>
             <div className="flex flex-wrap gap-2">
               {marketing.footer.chips.map((chip) => (
