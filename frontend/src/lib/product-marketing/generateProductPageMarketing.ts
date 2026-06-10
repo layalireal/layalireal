@@ -24,6 +24,7 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
         : 'بخاخ';
 
   const isRoseAcRitual = product.id === 'layali-aroma-rose-kit-001';
+  const isOudSerum = product.id === 'layali-oud-serum-001';
 
   const painCards = isRoseAcRitual
     ? [
@@ -185,19 +186,26 @@ export function generateProductPageMarketing(product: Product): ProductPageMarke
           stat: 'يعانين من جفاف التكييف أو احمرار بعد أي منتج؟ أنتِ من الأغلبية — مو لحالك، والإصلاح يبدأ من الحاجز.',
           source: `استطلاع عملاء ${brand.nameLocal} • ٢٠٢٥`,
         }
-      : product.id === 'layali-aroma-fusion-001'
+      : isOudSerum
         ? {
             headline: product.problem,
-            percentage: '٦٣٪',
-            stat: 'تحسّين بالتوتر أو صداع نفسي داخل البيت بعد يوم طويل؟ أنتِ من الأغلبية — مو لحالك، والحل يبدأ من أجواء البيت.',
+            percentage: '٦١٪',
+            stat: 'ريحتك تختفي قبل الظهر مع التكييف والحر؟ أنتِ من الأغلبية — مو لحالك، والحل يبدأ من سيروم مركّز يدوم.',
             source: `استطلاع عملاء ${brand.nameLocal} • ٢٠٢٥`,
           }
-        : {
-            headline: product.problem,
-            percentage: '٥٥٪',
-            stat: `${product.emotionalPain} — أنتِ مو لحالك، والحل يبدأ بروتين بسيط.`,
-            source: `استطلاع عملاء ${brand.nameLocal} • ٢٠٢٥`,
-          },
+        : product.id === 'layali-aroma-fusion-001'
+          ? {
+              headline: product.problem,
+              percentage: '٦٣٪',
+              stat: 'تحسّين بالتوتر أو صداع نفسي داخل البيت بعد يوم طويل؟ أنتِ من الأغلبية — مو لحالك، والحل يبدأ من أجواء البيت.',
+              source: `استطلاع عملاء ${brand.nameLocal} • ٢٠٢٥`,
+            }
+          : {
+              headline: product.problem,
+              percentage: '٥٥٪',
+              stat: `${product.emotionalPain} — أنتِ مو لحالك، والحل يبدأ بروتين بسيط.`,
+              source: `استطلاع عملاء ${brand.nameLocal} • ٢٠٢٥`,
+            },
     painCards,
     failureAlternatives,
     mechanism: {
