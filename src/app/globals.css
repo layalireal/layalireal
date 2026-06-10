@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  direction: rtl;
+  text-rendering: optimizeSpeed;
+}
+
+body {
+  @apply bg-brand-background font-arabic text-brand-text antialiased;
+}
+
+h1,
+h2,
+h3 {
+  @apply font-extrabold tracking-tight text-balance;
+}
+
+.font-latin {
+  font-family: var(--font-latin), system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto max-w-container px-4 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-block text-[11px] font-bold uppercase tracking-[0.25em] text-brand-secondary;
+  }
+
+  .glass-badge {
+    @apply rounded-xl border border-brand-border bg-white/70 px-2 py-2.5 text-center backdrop-blur-sm;
+  }
+
+  .nama-card {
+    @apply rounded-2xl border border-brand-border bg-brand-card shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-luxury;
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-[56px] items-center justify-center gap-2 rounded-2xl bg-brand-primary px-7 py-4 text-base font-bold text-white shadow-primary transition-all hover:scale-[1.02] hover:opacity-90 lg:text-lg;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-brand-border bg-brand-secondary-soft px-5 py-3 text-sm font-bold text-brand-text;
+  }
+
+  .deco-ring {
+    @apply pointer-events-none absolute rounded-full border-2 border-brand-secondary/15;
+  }
+}

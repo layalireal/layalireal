@@ -1,0 +1,257 @@
+import type { Product } from '@/types/product';
+import { getLowestOfferPrice } from '@/types/product';
+import { publicAsset } from '@/lib/publicAsset';
+
+export const products: Product[] = [
+  {
+    id: 'layali-aroma-fusion-001',
+    slug: 'aroma-fusion-home',
+    sku: 'LB-AROMA-001',
+    name: 'أروما فيوجن — ريحة بيت تهدّي التوتر',
+    shortName: 'أروما فيوجن',
+    routineNameLocal: 'روتين الراحة',
+    routineNameEnglish: 'روتين هدوء البيت',
+    category: 'home-fragrance',
+    format: 'diffuser-spray',
+    targetCustomer: 'سيدات الإمارات اللي يحسّون بالتوتر والصداع النفسي في البيت',
+    problem: 'التوتر والصداع النفسي داخل البيت',
+    emotionalPain: 'البيت المفروض يكون مكان راحة، بس الريحة والتوتر يخلّونك ما ترتاحين',
+    desiredOutcome: 'بيت أهدأ، ريحة فاخرة، ونفسية أهدأ بعد يوم طويل',
+    mainIngredient: 'مزيج عطري فاخر مستوحى من دبي',
+    ingredientStack: [
+      { name: 'عود دبي', benefit: 'عمق ودفء يعطي إحساس فخامة وراحة', proof: 'من أشهر روائح الخليج' },
+      { name: 'مسك أبيض', benefit: 'نعومة وهدوء يدعم أجواء مريحة', proof: 'يستخدم في بيوت فاخرة' },
+      { name: 'زهور بيضاء', benefit: 'إحساس نظافة وصفاء في الجو', proof: 'رائحة خفيفة ما تثقل' },
+    ],
+    mechanism: 'الرائحة تؤثر مباشرة على الجهاز العصبي — أروما فيوجن مصمم يهدّي أجواء البيت ويخفف إحساس التوتر',
+    cardHeadline: 'ريحة تهدّي البيت بعد يوم متعب',
+    cardSubheadline: 'مزيج عطري فاخر لبيت أهدأ وأنعم — بدون دفع أونلاين',
+    heroHeadline: 'البيت فيه توتر وصداع نفسي؟ — السبب ممكن يكون الجو مو الريحة الصح',
+    heroSubheadline:
+      'أروما فيوجن يدعم أجواء أهدأ في البيت بمزيج عطري فاخر مستوحى من دبي. ريحة تهدّي، مو بس تغطي.',
+    rating: 4.9,
+    reviewsCount: 487,
+    badges: ['الدفع عند الاستلام', 'صنع في دبي', '٣٠ يوم ضمان', 'شحن كل الإمارات'],
+    offers: [
+      {
+        id: 'one',
+        quantity: 1,
+        label: 'أروما فيوجن فقط',
+        subtitle: 'بخاخ واحد — شهر من الراحة',
+        price: 299,
+        compareAtPrice: 349,
+        badge: '',
+      },
+      {
+        id: 'two',
+        quantity: 2,
+        label: 'باقة أروما فيوجن المزدوجة',
+        subtitle: 'بخاخين — الباقة الأكثر طلباً',
+        price: 379,
+        compareAtPrice: 498,
+        badge: 'الأكثر اختياراً',
+        defaultSelected: true,
+      },
+      {
+        id: 'three',
+        quantity: 3,
+        label: 'باقة أروما فيوجن العائلية',
+        subtitle: '٣ بخاخات — أكبر توفير',
+        price: 499,
+        compareAtPrice: 697,
+        badge: 'أكبر توفير',
+      },
+    ],
+    upsell: {
+      enabled: true,
+      price: 379,
+      label: 'أضيفي طقوس الورد',
+      subtitle: 'روتين ما بعد التكييف — عرض خاص',
+      targetProductId: 'layali-aroma-rose-kit-001',
+    },
+    exclusions: ['بدون كحول قاسي', 'بدون مواد مهيّجة', 'بدون عطور صناعية رخيصة', 'بدون مواد حيوانية'],
+    authority: {
+      certifications: ['صنع في الإمارات', 'جودة معتمدة', 'مكونات مدروسة', 'تغليف فاخر'],
+      expertTitle: 'خبيرة عطور منزلية — دبي',
+      expertQuote:
+        'الرائحة المناسبة في البيت تغيّر المزاج خلال دقائق. مزيج أروما فيوجن مصمم يهدّي الأجواء بدون ما يكون ثقيل أو مزعج.',
+      stats: [
+        { value: '+١٬٢٠٠', label: 'عميلة راضية في الإمارات' },
+        { value: '٤٫٩', label: 'تقييم متوسط' },
+        { value: '٣٠', label: 'يوم ضمان' },
+        { value: '١-٣', label: 'أيام توصيل' },
+      ],
+    },
+    timeline: [
+      { label: 'أول استخدام', text: 'كثير عميلات يحسّون بفرق في أجواء البيت من أول يوم — ريحة أهدأ وأنعم.' },
+      { label: 'الأسبوع الأول', text: 'مع الاستخدام اليومي، البيت يصير مكان ترتاحين فيه أكثر بعد الشغل والتوتر.' },
+      { label: 'نهاية الشهر', text: 'روتين ثابت يدعم نفسية أهدأ — النتيجة تختلف من شخص لشخص.' },
+    ],
+    usage: {
+      headline: 'أبسط روتين للبيت',
+      steps: [
+        'رشّي ٢-٣ بخات في الصالة أو غرفة النوم بعد التنظيف',
+        'استخدميه يومياً — خصوصاً بعد يوم متعب',
+        'للأجواء الأقوى: رشّي على الوسائد أو الستائر من مسافة',
+      ],
+    },
+    delivery: {
+      cities: ['دبي', 'أبوظبي', 'الشارقة', 'عجمان', 'أم القيوين', 'رأس الخيمة', 'الفجيرة'],
+      carriers: ['أرامكس', 'سمسا', 'كويك أب'],
+    },
+    images: {
+      heroBeforeAfter: '',
+      heroProduct: publicAsset('products/oud/ChatGPT Image Jun 10, 2026, 12_59_15 AM.png'),
+      problemImage: publicAsset('products/oud/problem.webp'),
+      ingredientImage: publicAsset('products/oud/ChatGPT Image Jun 9, 2026, 11_17_06 PM.png'),
+      authorityImage: '',
+      lifestyleImage: '',
+      testimonialImage: '',
+      comparisonImage: '',
+    },
+    imageAlts: {
+      heroBeforeAfter: 'قبل وبعد أجواء البيت مع أروما فيوجن',
+      heroProduct: 'بخاخ أروما فيوجن',
+      problemImage: 'توتر وصداع نفسي في البيت',
+      ingredientImage: 'مكونات أروما فيوجن',
+      authorityImage: 'خبيرة عطور منزلية',
+      lifestyleImage: 'بيت هادئ ومرتب',
+      testimonialImage: 'عميلة راضية',
+      comparisonImage: 'مقارنة المنتجات',
+    },
+    relatedProductIds: ['layali-aroma-rose-kit-001'],
+  },
+  {
+    id: 'layali-aroma-rose-kit-001',
+    slug: 'aroma-rose-ritual-kit',
+    sku: 'LB-ROSE-001',
+    name: 'طقوس الورد — مصباح أروما + زيت الورد',
+    shortName: 'طقوس الورد',
+    routineNameLocal: 'روتين الورد',
+    routineNameEnglish: 'طقوس الورد',
+    category: 'skin-hydration',
+    format: 'aroma-lamp-kit',
+    targetCustomer: 'سيدات الإمارات اللي قضات يومها بين التكييف والمكتب والبيت',
+    problem: 'جفاف البشرة من التكييف والجو الجاف',
+    emotionalPain: 'بشرتك مشدودة وباهتة بعد يوم طويل فالتكييف — والبيت ما يعطيك إحساس الراحة اللي تستحقينه',
+    desiredOutcome: 'بشرة مرطّبة وناعمة مع أجواء ورد هادئة — كأنك في سبا فندق دبي',
+    mainIngredient: 'زيت الورد + سيروم مرطّب',
+    ingredientStack: [
+      { name: 'سيروم الورد + HA', benefit: 'يرطّب البشرة الجافة ويخفّف إحساس الشد من التكييف', proof: 'تركيبة مركّزة للاستخدام اليومي' },
+      { name: 'زيت الورد 30ml', benefit: 'للمصباح وللعناية — ريحة ورد طبيعية تهدّي الأجواء', proof: '٣–٥ قطرات للمصباح، ١–٢ للبشرة مخفّفة' },
+      { name: 'مصباح الأروما', benefit: 'يوزّع الرائحة بهدوء — روتين مسائي ٢٠ دقيقة', proof: 'مصمم لجو الإمارات: بيت هادئ بعد يوم متعب' },
+    ],
+    mechanism:
+      'التكييف يسحب الرطوبة من بشرتك طوال اليوم — طقوس الورد روتين مسائي: سيروم الورد يرطّب البشرة، ومصباح الأروما يهدّي البيت في نفس الوقت',
+    cardHeadline: 'التكييف جفّف بشرتك؟ — روتين الورد يرجّعها حية',
+    cardSubheadline: 'مصباح أروما + زيت ورد + سيروم — روتين ما بعد التكييف',
+    heroHeadline: 'التكييف خلا بشرتك جافة؟ — ٢٠ دقيقة ورد كيرجعو ليك الحياة',
+    heroSubheadline:
+      'طقوس الورد روتين مسائي صُمّم لجو الإمارات: سيروم ورد يرطّب البشرة بعد يوم فالتكييف، ومصباح الأروما يخلّي بيتك يبان كسبا فاخر.',
+    rating: 4.9,
+    reviewsCount: 312,
+    badges: ['روتين ما بعد التكييف', 'زيت ورد طبيعي', '٣٠ يوم ضمان', 'شحن كل الإمارات'],
+    offers: [
+      {
+        id: 'one',
+        quantity: 1,
+        label: 'مصباح الأروما فقط',
+        subtitle: 'أجواء ورد هادئة — مثالي قبل النوم',
+        price: 299,
+        compareAtPrice: 349,
+        badge: '',
+      },
+      {
+        id: 'two',
+        quantity: 2,
+        label: 'باقة ما بعد التكييف',
+        subtitle: 'مصباح + زيت ورد 30ml + سيروم الورد — الباقة الكاملة',
+        price: 379,
+        compareAtPrice: 498,
+        badge: 'الأكثر اختياراً',
+        defaultSelected: true,
+      },
+      {
+        id: 'three',
+        quantity: 3,
+        label: 'باقة ما بعد التكييف + سيروم إضافي',
+        subtitle: 'روتين شهر كامل — وفّري أكثر',
+        price: 499,
+        compareAtPrice: 697,
+        badge: 'أكبر توفير',
+      },
+    ],
+    upsell: {
+      enabled: true,
+      price: 299,
+      label: 'أضيفي أروما فيوجن للبيت',
+      subtitle: 'ريحة بيت تهدّي التوتر — عرض خاص',
+      targetProductId: 'layali-aroma-fusion-001',
+    },
+    exclusions: ['بدون كحول قاسي', 'بدون مواد مهيّجة', 'بدون عطور صناعية رخيصة', 'بدون مواد حيوانية'],
+    authority: {
+      certifications: ['صنع في الإمارات', 'زيت ورد طبيعي', 'تركيبة مدروسة', 'تغليف فاخر'],
+      expertTitle: 'خبيرة عناية طبيعية — دبي',
+      expertQuote:
+        'التكييف في الإمارات من أكبر أسباب جفاف البشرة. روتين مسائي بسيط — سيروم ورد + مصباح أروما — يرطّب البشرة ويهدّي البيت في نفس الوقت.',
+      stats: [
+        { value: '+٨٠٠', label: 'عميلة راضية في الإمارات' },
+        { value: '٤٫٩', label: 'تقييم متوسط' },
+        { value: '٣٠', label: 'يوم ضمان' },
+        { value: '١-٣', label: 'أيام توصيل' },
+      ],
+    },
+    timeline: [
+      { label: 'أول مساء', text: 'بعد يوم فالتكييف — كثير عميلات يحسّون ببشرة أقل شدّاً وأجواء بيت أهدأ من أول استخدام.' },
+      { label: 'الأسبوع الأول', text: 'روتين ٢٠ دقيقة قبل النوم: الجفاف يقل تدريجياً والبشرة تبان أكثر حياة وترطيباً.' },
+      { label: 'نهاية الشهر', text: 'روتين ثابت ما بعد التكييف — بشرة ناعمة وبيت برائحة ورد فاخرة. النتيجة تختلف حسب نوع البشرة.' },
+    ],
+    usage: {
+      headline: 'روتين ما بعد التكييف — ٢٠ دقيقة مساءً',
+      steps: [
+        'بعد ما توصلي البيت: نظّفي وجهك واستخدمي سيروم الورد على البشرة الجافة',
+        'حطي ٣–٥ قطرات زيت الورد في مصباح الأروما واشعليه ٢٠–٣٠ دقيقة — وقت راحتك',
+        'مرة أو مرتين بالأسبوع: ١–٢ قطرة زيت ورد مخفّفة على الوجه بعد السيروم للترطيب الأعمق',
+      ],
+    },
+    delivery: {
+      cities: ['دبي', 'أبوظبي', 'الشارقة', 'عجمان', 'أم القيوين', 'رأس الخيمة', 'الفجيرة'],
+      carriers: ['أرامكس', 'سمسا', 'كويك أب'],
+    },
+    images: {
+      heroBeforeAfter: '',
+      heroProduct: publicAsset('products/rose/ChatGPT Image Jun 10, 2026, 12_33_23 AM.png'),
+      problemImage: publicAsset('products/rose/WhatsApp Image 2026-06-04 at 01.15.52.jpg'),
+      ingredientImage: publicAsset('products/rose/ChatGPT Image Jun 9, 2026, 11_19_28 PM.png'),
+      authorityImage: '',
+      lifestyleImage: '',
+      testimonialImage: '',
+      comparisonImage: '',
+    },
+    imageAlts: {
+      heroBeforeAfter: 'قبل وبعد ترطيب البشرة مع طقوس الورد',
+      heroProduct: 'طقوس الورد — مصباح أروما وزيت الورد',
+      problemImage: 'جفاف البشرة من التكييف في الإمارات',
+      ingredientImage: 'مكونات طقوس الورد — زيت ورد وسيروم',
+      authorityImage: 'خبيرة عناية طبيعية',
+      lifestyleImage: 'بيت هادئ مع أروما الورد',
+      testimonialImage: 'عميلة راضية',
+      comparisonImage: 'مقارنة الباقات',
+    },
+    relatedProductIds: ['layali-aroma-fusion-001'],
+  },
+];
+
+export function getProductBySlug(slug: string): Product | undefined {
+  return products.find((p) => p.slug === slug);
+}
+
+export function getRelatedProducts(product: Product): Product[] {
+  const ids = product.relatedProductIds ?? [];
+  return products.filter((p) => ids.includes(p.id) && p.id !== product.id);
+}
+
+/** @deprecated use getLowestOfferPrice */
+export function getProductPriceFrom(product: Product): number {
+  return getLowestOfferPrice(product);
+}
